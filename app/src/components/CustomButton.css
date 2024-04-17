@@ -1,0 +1,14 @@
+.container{
+    width: 20;
+    height: 10;
+    background-color: 'black';
+    padding: 15;
+    border-radius: 10;
+    /* align-items: 'center'; */
+}
+
+.container_PRIMARY {
+    background-color: white;
+    border-color: #6C757D;
+    color: black;
+}

@@ -1,0 +1,34 @@
+# mugic_bow_app
+
+## notes and comments
+Think it's better to do with React so that in the future we can simply run this on a webpage too
+
+## Prerequisites
+```
+node -v
+npm -v
+```
+
+## Tools
+```
+react
+maybe bootstrap for the design?
+```
+
+## setup run
+```
+./setup.sh
+```
+
+## dev mode
+for most of the dev process we will use browser version, this opens up on localhost port 3000
+```
+cd app/
+npm start
+```
+
+## prod mode
+this runs the web version onto the desktop app
+```
+./run.sh
+```
