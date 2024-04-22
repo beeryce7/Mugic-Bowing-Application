@@ -5,8 +5,8 @@ const path = require('path');
 function createMainWindow() {
     mainWindow = new BrowserWindow({
         title: 'MUGIC BOWING',
-        width: 600,
-        height: 400,
+        width: 800,
+        height: 600,
     
     });
     const startUrl = url.format({
