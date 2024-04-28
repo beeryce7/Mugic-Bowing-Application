@@ -1,7 +1,7 @@
 stages:
   - test
 
-deployement test:
+deployment_test:
   image: node:latest
   stage: test
   before_script:
@@ -10,4 +10,3 @@ deployement test:
     - cd ./app
     - npm start
     - curl http://localhost:3000
-    
