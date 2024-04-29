@@ -1,12 +1,19 @@
 stages:
   - test
 
-deployment_test:
+unit-test:
   image: node:latest
   stage: test
   before_script:
-    - npm install --prefix ./app 
+    - cd app
+    - npm install
   script:
-    - cd ./app
-    - npm start
-    - curl http://localhost:3000
+    - npm run test:ci
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  artifacts:
+    paths:
+      - coverage/
+    when: always
+    reports:
+      junit:
+        - junit.xml
