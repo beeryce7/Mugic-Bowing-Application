@@ -6,7 +6,8 @@ const osc = require('node-osc');
 
 const oscAvailableIPRange = "0.0.0.0";
 const addressPortMUGIC = 4000;
-
+var mainWindow = 0;
+var oscServer = 0;
 
 function createMainWindow() {
     mainWindow = new BrowserWindow({
@@ -43,8 +44,10 @@ app.whenReady().then(() => {
       // dock icon is clicked and there are no other windows open.
       if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
+
     // Start communication with MUGIC device
     let isConnected = false;
+
     function openAndListenToMugic(addressPortMUGIC, oscAvailableIPRange, retryInterval = 2000, maxRetries = 3) {
       let retryCount = 0;
       let isConnecting = false; // Track if a connection attempt is ongoing
@@ -53,7 +56,7 @@ app.whenReady().then(() => {
         if (isConnecting) return; // Don't start a new connection if one is ongoing
         isConnecting = true;
 
-        const oscServer = new osc.Server(addressPortMUGIC, oscAvailableIPRange, () => {
+        oscServer = new osc.Server(addressPortMUGIC, oscAvailableIPRange, () => {
           console.log("listening")
         });
         console.log(oscServer)
@@ -106,7 +109,11 @@ app.whenReady().then(() => {
   // for applications and their menu bar to stay active until the user quits
   // explicitly with Cmd + Q.
   app.on('window-all-closed', () => {
+
+    oscServer.close()
+
     if (process.platform !== 'darwin') app.quit()
+    
   })
   
   // In this file you can include the rest of your app's specific main process

@@ -3,6 +3,7 @@ import CustomButton from '../../components/CustomButton';
 import './Home.css'; 
 import Header from '../../components/home/Header';
 import MugicTracker from '../../components/mugic_tracker/MugicTracker';
+import { Slider } from '@mui/material';
 
 const Home = () => {
   return (
@@ -30,6 +31,13 @@ const Home = () => {
       <h2 className="text_style">
         Recent Files
       </h2>
+        <Slider
+        size="small"
+        defaultValue={70}
+        aria-label="Small"
+        valueLabelDisplay="auto"
+       />
+        <Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
     </div> 
   );
 };

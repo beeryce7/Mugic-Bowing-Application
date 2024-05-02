@@ -6,7 +6,7 @@ const MugicTracker = () => {
   // For tracking the rotation and acceleration of the MUGIC device as a state
   //  in the format: [pitch, yaw, roll, x, y, z]
   const[MUGICParams, setMUGICParams] = useState({
-    params: [0, 0, 0, 0, 0, 0]
+    params: [0, 0, 0, 0, 0, 0, 0, 0]
   })
 
   const[graphParams, setGraphParams] = useState({
@@ -59,9 +59,9 @@ const MugicTracker = () => {
   })
 
   window.electronAPI.onMugicMessage((msg) => {
-    console.log("received message");
-    console.log(msg);
+    setMUGICParams({params: [msg[1], msg[2], msg[3], msg[4], msg[5], msg[6], msg[17], msg[24]]})
   }) 
+  
   window.electronAPI.onMugicError((err) => {
     console.log("received error");
     console.log(err);
@@ -73,15 +73,19 @@ const MugicTracker = () => {
           {isConnected ? "connected" : "not connected"}<br/>
         </p> */}
         <p>
-          Pitch: {MUGICParams.params[0]}<br/>
-          Yaw: {MUGICParams.params[1]}<br/>
-          Roll: {MUGICParams.params[2]}<br/>
-          X: {MUGICParams.params[3]}<br/>
-          Y: {MUGICParams.params[4]}<br/>
-          Z: {MUGICParams.params[5]}<br/>
+          Accel X: {MUGICParams.params[0]}<br/>
+          Accel Y: {MUGICParams.params[1]}<br/>
+          Accel Z: {MUGICParams.params[2]}<br/>
+          Euler X: {MUGICParams.params[3]}<br/>
+          Euler Y: {MUGICParams.params[4]}<br/>
+          Euler Z: {MUGICParams.params[5]}<br/>
+          Battery: {MUGICParams.params[6]}<br/>
+          Seq Num: {MUGICParams.params[7]}<br/>
         </p>
       </div>
   );
+
+  
 };
 
 
