@@ -1,10 +1,10 @@
 import React from 'react';
-import CustomButton from '../../components/CustomButton';
 import './Settings.css'; 
 import Header from '../../components/home/Header';
-import { Grid, Container } from '@mui/material';
+import { Grid, Container, Switch } from '@mui/material';
+import InfoContainer from '../../components/settings/InfoContainer';
 
-const Home = () => {
+const Settings = () => {
   return (
     <div>
       <Header/>
@@ -14,26 +14,39 @@ const Home = () => {
       </h1>
       <Grid container spacing={2}>
         <Grid item xs={6}>
-         <Container className="var-container">Yaw</Container>
+         <InfoContainer title="Yaw" fill={true}>
+            content
+         </InfoContainer>
         </Grid>
         <Grid item xs={6}>
-         <Container className="var-container">Energy</Container>
+         <InfoContainer title="Energy">
+
+         </InfoContainer>
         </Grid>
         <Grid item xs={6}>
-         <Container className="var-container">Pitch</Container>
+         <InfoContainer title="Pitch">
+
+         </InfoContainer>
         </Grid>
         <Grid item xs={6}>
-         <Container className="var-container">Jolt</Container>
+         <InfoContainer title="Jolt">
+         <Switch />
+         </InfoContainer>
         </Grid>
         <Grid item xs={6}>
-         <Container className="var-container">Roll</Container>
+         <InfoContainer title="Roll">
+
+         </InfoContainer>
         </Grid>
         <Grid item xs={6}>
-         <Container className="var-container">Calibration</Container>
+         <InfoContainer title="Calibration" fill={false}>
+            content
+            
+         </InfoContainer>
         </Grid>
       </Grid>
     </div> 
   );
 };
 
-export default Home;
+export default Settings;

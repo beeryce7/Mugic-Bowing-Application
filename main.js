@@ -1,12 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const url = require('url');
 const path = require('path');
-
 const osc = require('node-osc');
 
 const oscAvailableIPRange = "0.0.0.0";
 const addressPortMUGIC = 4000;
-var mainWindow = 0;
 var oscServer = 0;
 
 function createMainWindow() {
@@ -30,6 +28,8 @@ function createMainWindow() {
 
 
     mainWindow.loadURL(startUrl);
+
+    return mainWindow
 }
 
 
@@ -37,7 +37,7 @@ function createMainWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-    createMainWindow()
+    var mainWindow = createMainWindow()
   
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the

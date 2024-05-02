@@ -1,0 +1,10 @@
+.body-fill{
+    background-color: var(--main-header-color);
+    margin: 5;
+}
+.body-nofill{
+    margin: 5;
+}
+.outer{
+    padding: 10;
+}

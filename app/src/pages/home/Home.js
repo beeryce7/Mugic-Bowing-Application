@@ -2,7 +2,6 @@ import React from 'react';
 import CustomButton from '../../components/CustomButton';
 import './Home.css'; 
 import Header from '../../components/home/Header';
-import { Slider } from '@mui/material';
 
 const Home = () => {
   return (
