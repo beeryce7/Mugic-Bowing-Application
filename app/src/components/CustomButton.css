@@ -1,14 +1,22 @@
-.container{
-    width: 20;
-    height: 10;
-    background-color: 'black';
-    padding: 15;
-    border-radius: 10;
-    /* align-items: 'center'; */
+.container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+
 }
 
-.container_PRIMARY {
-    background-color: white;
-    border-color: #6C757D;
-    color: black;
+.container_DEFAULT {
+    background: var(--card-background-color);
+    border-radius: 20px;
+    border-width: 0;
+    left: calc(350px + 100vw - 1024px)!important;
+    height: 100px; 
+    cursor: pointer;
+}
+
+.button_text {
+    font-size: var(--card-text-size);
+    font-weight: var(--main-font-weight);
+    color:var(--main-text-color);
+    font-family: var(--main-font);
 }
