@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const url = require('url');
 const path = require('path');
 const osc = require('node-osc');
@@ -44,6 +44,8 @@ app.whenReady().then(() => {
       // dock icon is clicked and there are no other windows open.
       if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
+
+    ipcMain.on('save-file', handleSaveFile)
 
     // Start communication with MUGIC device
     let isConnected = false;
@@ -104,6 +106,39 @@ app.whenReady().then(() => {
 
     openAndListenToMugic(4000, "0.0.0.0")
   })
+
+  async function handleSaveFile (event, data) {
+    const fs = require('fs')
+  
+    console.log("saving file")
+  
+    dialog.showSaveDialog({ 
+      title: 'Select path to save recording', 
+      defaultPath: path.join(__dirname, '/assets/recording.txt'), 
+      buttonLabel: 'Save', 
+      filters: [ 
+          { 
+              name: 'Text Files', 
+              extensions: ['txt', 'docx'] 
+          }, ], 
+      properties: [] 
+    }).then(file => { 
+      if (!file.canceled) { 
+          fs.writeFile(file.filePath.toString(), data, function (err) { 
+              if (err) throw err; 
+              console.log("Saved at location:" + file.filePath.toString()); 
+          }); 
+      }
+      else{
+        console.log("cancelled")
+      }
+    }).catch(err => { 
+      console.log(err) 
+    }); 
+  
+  }
+
+  
   
   // Quit when all windows are closed, except on macOS. There, it's common
   // for applications and their menu bar to stay active until the user quits
