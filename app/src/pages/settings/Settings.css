@@ -30,3 +30,8 @@
     height: 150px;
     font-weight: var(--main-font-weight);
 }
+
+.var-container{
+    display: flex;
+    background-color: slategray;
+}
