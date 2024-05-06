@@ -8,7 +8,8 @@ const PlaySession = () => {
   return (
     <div>
     <Header/>
-      <h1 className="banner"></h1>
+    <div className="top-graph">Block Teacher</div>
+    <div className="top-graph">Block Student</div>
       <h1>Graph Here</h1>
       <DividerStack/>
       <h2>Stats</h2>

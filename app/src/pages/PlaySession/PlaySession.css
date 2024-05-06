@@ -13,3 +13,12 @@
     height: 150px;
     font-weight: var(--main-font-weight);
 }
+
+.top-graph {
+    margin: 0 100px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    display: inline-block;
+    margin-right: 10px;
+}
