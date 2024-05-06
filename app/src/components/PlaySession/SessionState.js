@@ -5,8 +5,10 @@ const SessionState = () => {
   return (
 
     <div>
-    <h1>Hello World</h1>
+    <h1>Graph Here</h1>
+    <p>Something Something Something</p>
     </div>
+    
   );
 };
 
