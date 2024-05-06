@@ -5,8 +5,15 @@ const MugicTracker = () => {
 
   // For tracking the rotation and acceleration of the MUGIC device as a state
   //  in the format: [pitch, yaw, roll, x, y, z]
-  const[MUGICParams, setMUGICParams] = useState({
-    params: [0, 0, 0, 0, 0, 0, 0, 0]
+  const [isConnected, setIsConnected] = useState(false)
+
+  const[mugicData, setMugicData] = useState({
+    accel: [0,0,0],
+    euler: [0,0,0],
+    gyro: [0,0,0],
+    quatern: [0,0,0,0],
+    battery: 0,
+    seqNum: 0,
   })
 
   const[graphParams, setGraphParams] = useState({
@@ -59,7 +66,18 @@ const MugicTracker = () => {
   })
 
   window.electronAPI.onMugicMessage((msg) => {
-    setMUGICParams({params: [msg[1], msg[2], msg[3], msg[4], msg[5], msg[6], msg[17], msg[24]]})
+    setMugicData({
+      accel: [msg[1], msg[2], msg[3]],
+      euler: [msg[4],msg[5],msg[6]],
+      gyro: [msg[7], msg[8], msg[9]],
+      quatern: [msg[13], msg[14], msg[15], msg[16]],
+      battery: msg[17],
+      seqNum: msg[24],
+    })
+    if(!isConnected){
+      setIsConnected(true)
+    }
+    
   }) 
   
   window.electronAPI.onMugicError((err) => {
@@ -69,19 +87,23 @@ const MugicTracker = () => {
 
   return (
       <div>
-        {/* <p>
-          {isConnected ? "connected" : "not connected"}<br/>
-        </p> */}
-        <p>
-          Accel X: {MUGICParams.params[0]}<br/>
-          Accel Y: {MUGICParams.params[1]}<br/>
-          Accel Z: {MUGICParams.params[2]}<br/>
-          Euler X: {MUGICParams.params[3]}<br/>
-          Euler Y: {MUGICParams.params[4]}<br/>
-          Euler Z: {MUGICParams.params[5]}<br/>
-          Battery: {MUGICParams.params[6]}<br/>
-          Seq Num: {MUGICParams.params[7]}<br/>
-        </p>
+        <h2>
+          Mugic Tracker
+        </h2>
+
+        {isConnected ? (
+          <div>
+            <p>Acceleration: {mugicData.accel}</p>
+            <p>Gyro: {mugicData.gyro}</p>
+            <p>Euler Angles: {mugicData.euler}</p>
+            <p>Quaternions: {mugicData.quatern}</p>
+            <p>Battery: {mugicData.battery}</p>
+            <p>Sequence Number: {mugicData.seqNum}</p>
+          </div>
+        ) : (
+          <p> Not connected! </p>
+        )}
+
       </div>
   );
 
