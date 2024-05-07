@@ -18,9 +18,6 @@ const PlaySession = () => {
     <h2>Stats</h2>
     <li> Accuracy</li>
     <li>Angle</li>
-    <h1 className="banner">
-      Play Session
-    </h1>
     <MugicTracker/>
 
     </div> 
