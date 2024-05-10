@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const url = require('url');
 const path = require('path');
 const osc = require('node-osc');
+const fs = require('fs');
 
 const oscAvailableIPRange = "0.0.0.0";
 const addressPortMUGIC = 4000;
@@ -46,6 +47,7 @@ app.whenReady().then(() => {
     })
 
     ipcMain.on('save-file', handleSaveFile)
+    ipcMain.handle('load-file', handleLoadFile)
 
     // Start communication with MUGIC device
     let isConnected = false;
@@ -108,7 +110,6 @@ app.whenReady().then(() => {
   })
 
   async function handleSaveFile (event, data) {
-    const fs = require('fs')
   
     console.log("saving file")
   
@@ -127,6 +128,40 @@ app.whenReady().then(() => {
           fs.writeFile(file.filePath.toString(), data, function (err) { 
               if (err) throw err; 
               console.log("Saved at location:" + file.filePath.toString()); 
+          }); 
+      }
+      else{
+        console.log("cancelled")
+      }
+    }).catch(err => { 
+      console.log(err) 
+    }); 
+  
+  }
+
+  async function handleLoadFile (event, data) {
+    const fs = require('fs')
+  
+    console.log("loading file")
+  
+    dialog.showOpenDialog({ 
+      title: 'Select recording file to load', 
+      defaultPath: path.join(__dirname, '/assets/recording.txt'), 
+      buttonLabel: 'Load', 
+      filters: [ 
+          { 
+              name: 'Text Files', 
+              extensions: ['txt', 'docx'] 
+          }, ], 
+      properties: [
+        'openFile'
+      ] 
+    }).then(file => { 
+      if (!file.canceled) { 
+          fs.readFile(file.filePath.toString(), 'utf8', function (err, data) { 
+              if (err) throw err; 
+              console.log("data loaded: " + data); 
+              return data;
           }); 
       }
       else{
