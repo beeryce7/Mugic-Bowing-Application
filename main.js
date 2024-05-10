@@ -144,7 +144,7 @@ app.whenReady().then(() => {
   
     console.log("loading file")
   
-    dialog.showOpenDialog({ 
+    data = dialog.showOpenDialog({ 
       title: 'Select recording file to load', 
       defaultPath: path.join(__dirname, '/assets/recording.txt'), 
       buttonLabel: 'Load', 
@@ -157,8 +157,9 @@ app.whenReady().then(() => {
         'openFile'
       ] 
     }).then(file => { 
+      console.log(file)
       if (!file.canceled) { 
-          fs.readFile(file.filePath.toString(), 'utf8', function (err, data) { 
+          fs.readFile(file.filePaths[0], 'utf8', function (err, data) { 
               if (err) throw err; 
               console.log("data loaded: " + data); 
               return data;
@@ -168,8 +169,9 @@ app.whenReady().then(() => {
         console.log("cancelled")
       }
     }).catch(err => { 
-      console.log(err) 
+      conssole.log(err) 
     }); 
+    return data
   
   }
 
