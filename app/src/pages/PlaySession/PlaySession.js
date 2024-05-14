@@ -3,7 +3,7 @@ import './PlaySession.css';
 import Header from '../../components/PlaySession/Header';
 import SessionState from '../../components/PlaySession/SessionState';
 import DividerStack from '../../components/PlaySession/DividerStack';
-import MugicTracker from '../../components/mugic_tracker/MugicTracker';
+import Visualizer from '../../components/visualizer/visualizer';
 
 
 
@@ -18,7 +18,7 @@ const PlaySession = () => {
     <h2>Stats</h2>
     <li> Accuracy</li>
     <li>Angle</li>
-    <MugicTracker/>
+    <Visualizer/>
 
     </div> 
   );
