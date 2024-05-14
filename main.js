@@ -5,6 +5,7 @@ const osc = require('node-osc');
 
 const oscAvailableIPRange = "0.0.0.0";
 const addressPortMUGIC = 4000;
+const minPollDelay = 100;
 var oscServer = 0;
 
 function createMainWindow() {
@@ -38,6 +39,8 @@ function createMainWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
     var mainWindow = createMainWindow()
+
+    var lastPoll = performance.now()
   
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
@@ -71,9 +74,12 @@ app.whenReady().then(() => {
         });
 
         oscServer.on('message', function (msg, rinfo) {
-          console.log("msg");
-          console.log(msg);
-          mainWindow.webContents.send('mugic-message', msg);
+          if (performance.now() - lastPoll >= minPollDelay)
+          {
+
+            mainWindow.webContents.send('mugic-message', msg);
+            lastPoll = performance.now()
+          }
           resetRetryCount();
         });
       }
