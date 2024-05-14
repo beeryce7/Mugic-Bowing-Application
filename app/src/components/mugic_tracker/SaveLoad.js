@@ -13,13 +13,12 @@ const SaveLoad = () => {
         
     }
 
-    const loadFile = () => {
+    async function loadFile() {
 
-        
+      var data = await window.electronAPI.loadFile()
       
-      console.log("data recieved: " + window.electronAPI.loadFile())
+      console.log("data recieved: " + data)
       setFile("file loaded!")
-      
   }
 
     return (
