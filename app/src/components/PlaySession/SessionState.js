@@ -1,14 +1,19 @@
 import React from 'react';
-import './SessionState.css'; // Import your CSS file for styling
+import './SessionState.css'; 
+import MediaControl from './MediaControl';
 
 const SessionState = () => {
   return (
+    <div className="box">
 
-    <div>
-    <h1>Graph Here</h1>
-    <p>Something Something Something</p>
+      <div className="media">
+        <div className="media-items">
+          <MediaControl/>
+        </div>
+        <div>Count down is 3sec</div>
+      </div>
+
     </div>
-    
   );
 };
 

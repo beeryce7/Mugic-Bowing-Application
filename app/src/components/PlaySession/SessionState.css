@@ -1,40 +1,19 @@
-  
-.logo {
-    margin: 0 20px;
-    font-size: 28px;
-    font-weight: var(--main-font-weight);
+.media {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+
 }
 
-.nav-items {
+.media-items {
     display: flex;
 }
 
-.nav-item {
-    margin: 0 30px;
-    margin-top: 10px;
-    cursor: pointer;
-}
+.box{
+    border-radius: 20px;
+    border-width: 2px;
+    border-style: solid;
 
-.professor {
-    cursor: pointer;
-}
-
-a{
-    color: white;
-}
-
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
-text-decoration: none;
-}
-
-a:hover {
-text-decoration: underline;
-}
-
-a:active {
-text-decoration: underline;
+    margin-left: 20px;
+    margin-right: 20px;
 }
