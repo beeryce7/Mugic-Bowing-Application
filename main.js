@@ -110,11 +110,6 @@ app.whenReady().then(() => {
   })
 
 
-
-
-
-  
-  
   // Quit when all windows are closed, except on macOS. There, it's common
   // for applications and their menu bar to stay active until the user quits
   // explicitly with Cmd + Q.
@@ -178,8 +173,8 @@ async function handleLoadFile (event, data) {
   })
 
   console.log(fileInfo)
-  
-  if (!fileInfo.canceled) { 
+
+  if (!fileInfo.canceled) { //right now is setup synchronously, may cause a moment of lag upon loading a large file
     /*
       fs.readFile(file.filePaths[0], 'utf8', function (err, data) { 
           if (err) {
@@ -189,16 +184,18 @@ async function handleLoadFile (event, data) {
           return data;
       }); 
       */
-
-    
     var text = fs.readFileSync(fileInfo.filePaths[0], 'utf8')
     console.log("read:" + text)
-    return text;
+    
+    return {
+      cancelled: false,
+      message: text
+    }
   }
   else{
-    console.log("cancelled")
+    return {
+      cancelled: true,
+      message: "",
+    }
   }
-  
-  return data;
-
 }

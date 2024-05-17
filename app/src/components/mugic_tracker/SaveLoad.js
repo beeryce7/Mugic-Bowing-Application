@@ -17,7 +17,7 @@ const SaveLoad = () => {
 
       var data = await window.electronAPI.loadFile()
       
-      console.log("data recieved: " + data)
+      console.log("data recieved: " + JSON.stringify(data))
       setFile("file loaded!")
   }
 
