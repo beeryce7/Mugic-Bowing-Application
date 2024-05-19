@@ -12,6 +12,10 @@ const Visualizer = () => {
     const maxYaw = 360;
     const minRoll = -180;
     const maxRoll = 180;
+    const yawOffset = 0;
+    const rollOffset = 180;
+    const lineLifetime = 10;
+    const lineLength = 20;
 
 
     const[mugicData, setMugicData] = useState({
@@ -25,9 +29,27 @@ const Visualizer = () => {
 
     const[dotData, updateDotData] = useState({
         x: 0,
-        y: 0,
-        t: 0
+        y: 0
     })
+
+    // Points in lineData will be in the format [x1, y1, x2, y2, x3, y3]
+    const[lineData, updateLineData] = useState([]);
+
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
+    const addLinePoint = (x, y) => {
+        var points = [x, y, ...lineData];
+        if (points.length > lineLength * 2) {
+            points = points.slice(0, -2);
+        }
+        // lineData.push(x);
+        // lineData.push(y);
+        // if (lineData.length > lineLength) {
+        //     lineData.shift();
+        //     lineData.shift();
+        // }
+        updateLineData(points);
+    }
 
     const updateData = (msg) => {
         setMugicData({
@@ -42,13 +64,14 @@ const Visualizer = () => {
     }
 
     var circleRef = useRef(null);
+    var lineRef = useRef(null);
 
     const updateDot = () => {
         updateDotData({
             x: ((mugicData.euler[2] - minRoll) / (maxRoll - minRoll)) * width,
             y: ((mugicData.euler[0] - minYaw) / (maxYaw - minYaw)) * height,
-            t: (dotData.t + 1) % 5
         })
+        addLinePoint(dotData.x, dotData.y);
         if (circleRef.current != null) {
             circleRef.current.to({
                 x: dotData.x,
@@ -56,9 +79,16 @@ const Visualizer = () => {
                 duration: 0.1
             })
         }
-        else
-        {
+        if (lineRef.current != null) {
+            lineRef.current.to({
+                points: lineData,
+                duration: 0
+            })
         }
+        else {
+            console.log("no lineref")
+        }
+           
     }
 
     return (
@@ -73,6 +103,18 @@ const Visualizer = () => {
                         y={height / 2}
                         radius={10}
                         fill="blue"
+                    />
+                    <Line
+                        ref={lineRef}
+                        x={0}
+                        y={0}
+                        stroke="blue"
+                        strokeWidth={5}
+                        strokeEnabled={true}
+                        opacity={0.5}
+                        closed={false}
+                        tension={0.1}
+
                     />
                 </Layer>
             </Stage>
