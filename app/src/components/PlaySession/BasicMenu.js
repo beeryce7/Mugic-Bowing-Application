@@ -13,6 +13,11 @@ export default function BasicMenu() {
     setAnchorEl(null);
   };
 
+  const handleSave = () => {
+    handleClose();
+    window.electronAPI.saveFile("sample data");
+  }
+
   return (
     <div>
       <Button

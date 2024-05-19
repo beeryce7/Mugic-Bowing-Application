@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {addRecordingPointIfRecording} from './recordingDataSlice';
+
 
 export const listenToMugicData = createAsyncThunk(
   'mugicData/listenToMugicData',
@@ -18,6 +20,10 @@ export const listenToMugicData = createAsyncThunk(
           yaw: Math.round(yr * 180 / Math.PI),
           pitch: Math.round(pr * 180 / Math.PI),
           roll: Math.round(rr * 180 / Math.PI),
+        }));
+
+        dispatch(addRecordingPointIfRecording({
+          data: [Math.round(yr * 180 / Math.PI), Math.round(pr * 180 / Math.PI), Math.round(rr * 180 / Math.PI)]
         }));
       }, 300);
       
