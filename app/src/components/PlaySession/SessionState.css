@@ -69,6 +69,16 @@
     border-width: 2px;
     border-style: solid;
     margin-top: 20px;
-    margin-left: 0px;
-    margin-right: 700px;
+    width: 250px;
+}
+
+.move-left
+{
+    margin-right: 350px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.vertical-line {
+    width: 2px; /* Adjust the width of the line */
+    height: 7vh; /* Height of the line, set to full viewport height */
+    background-color: black; /* Color of the line */
 }

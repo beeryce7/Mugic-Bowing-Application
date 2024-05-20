@@ -10,6 +10,8 @@ const SessionState = () => {
         <div className="media-items">
           <MediaControl/>
         </div>
+        <div class="vertical-line"></div>
+        <div className="move-left">Count down</div>
         <div className="offset-left">Count down is 3 sec</div>
       </div>
 
