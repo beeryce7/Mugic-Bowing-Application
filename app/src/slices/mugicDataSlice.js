@@ -22,9 +22,9 @@ export const listenToMugicData = createAsyncThunk(
           roll: Math.round(rr * 180 / Math.PI),
         }));
 
-        dispatch(addRecordingPointIfRecording({
-          data: [Math.round(yr * 180 / Math.PI), Math.round(pr * 180 / Math.PI), Math.round(rr * 180 / Math.PI)]
-        }));
+        dispatch(addRecordingPointIfRecording(
+          [Math.round(yr * 180 / Math.PI), Math.round(pr * 180 / Math.PI), Math.round(rr * 180 / Math.PI)]
+        ));
       }, 300);
       
     });

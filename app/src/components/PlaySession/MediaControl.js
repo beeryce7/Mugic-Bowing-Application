@@ -18,38 +18,42 @@ const MediaControl = () => {
 
     const [secondsElapsed, setSecondsElapsed] = useState(0)
 
+    var interval = 0
+
     const updateTimeElapsed = () => {
-        if(isRecording){
-            setSecondsElapsed(Math.round((Date.now() - recordingStartTime) / 1000))
-        }
-        else{
-            setSecondsElapsed(0)
-        }
+        setSecondsElapsed(Math.round((Date.now() - recordingStartTime) / 1000))
     }
   
     useEffect(() => {
        dispatch(listenToMugicData());
     }, [dispatch]);
 
-    useEffect(() => {
-        const interval = setInterval(() => updateTimeElapsed(), 1000)
-    })
 
 
 
 
     const handlePlay = () => {
-        console.log("hdslao")
+        console.log("play")
     };
 
     const handleStop = () => {
         dispatch(stopRecording())
-        console.log("hdslao")
+
+        /*clearInterval(interval)
+        interval = 0
+        setSecondsElapsed(0)
+        */
+
+        console.log("stop")
     };
 
     const handleRecord = () => {
         dispatch(startRecording())
-        console.log("hdslao")
+        
+        /*
+        interval = setInterval(() => updateTimeElapsed(), 1000)
+        */
+        console.log("record")
     };
 
     return (
@@ -84,9 +88,6 @@ const MediaControl = () => {
                 }}
             />
             )}
-            <p>
-                {secondsElapsed}
-            </p>
 
         </>
     );
