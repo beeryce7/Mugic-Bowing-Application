@@ -11,7 +11,7 @@ const PlaySession = () => {
     <Header/>
     <div className="top-graph"><div className="key"><div class="color-block-teacher"></div>Teacher</div></div>
     <div className="top-graph"><div className="key"><div class="color-block-student"></div>Student</div></div>
-    <div className="top-graph">00:00:00</div>
+    <div className="be-on-right">00:00:00</div>
     <div className="new-graph">GRAPH</div>
 
     <SessionState/>

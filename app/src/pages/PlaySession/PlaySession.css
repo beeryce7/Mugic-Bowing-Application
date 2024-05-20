@@ -43,6 +43,15 @@
     margin-right: 10px;
 }
 
-.key-text {
-    font-size: 16px;
+
+.be-on-right
+{
+    font-family: 'Josefin Sans', sans-serif;
+    float: right;
+    display: flex;
+    margin: 0 20px;
+    margin-right: 40px;
+    margin-top: 16px;
+    justify-content: center;
+    align-items: center; 
 }
