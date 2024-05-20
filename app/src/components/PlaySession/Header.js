@@ -5,7 +5,7 @@ import BasicMenu from './BasicMenu';
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className="new-header">
       <div className="nav-items">
         <div className="new-logo"><Link to="/">μ</Link></div>
         <BasicMenu/>
