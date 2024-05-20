@@ -15,9 +15,9 @@ const PlaySession = () => {
     <div className="new-graph">GRAPH</div>
 
     <SessionState/>
-    <div className="offset-right"><h2>Stats</h2>
+    <div className="offset-right"><div className="lower-box"> <h1>Stats</h1>
     <li> Accuracy</li>
-    <li>Angle</li></div>
+    <li>Angle</li></div></div>
     {/* <MugicTracker/> */}
 
     </div> 

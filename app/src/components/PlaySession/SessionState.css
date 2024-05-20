@@ -63,3 +63,12 @@
     margin-left: 20px;
     font-family: 'Josefin Sans', sans-serif;
 }
+
+.lower-box{
+    border-radius: 20px;
+    border-width: 2px;
+    border-style: solid;
+    margin-top: 20px;
+    margin-left: 0px;
+    margin-right: 700px;
+}
