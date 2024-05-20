@@ -9,8 +9,9 @@ const PlaySession = () => {
   return (
     <div>
     <Header/>
-    <div className="top-graph">Block Teacher</div>
-    <div className="top-graph">Block Student</div>
+    <div className="top-graph"><div className="key"><div class="color-block-teacher"></div>Teacher</div></div>
+    <div className="top-graph"><div className="key"><div class="color-block-student"></div>Student</div></div>
+    <div className="new-graph">GRAPH</div>
 
     <SessionState/>
     <h2>Stats</h2>

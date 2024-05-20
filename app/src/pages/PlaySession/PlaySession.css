@@ -22,3 +22,27 @@
     display: inline-block;
     margin-right: 10px;
 }
+
+.key {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.color-block-teacher {
+    width: 20px;
+    height: 20px;
+    background-color: #1FBCFF; /* Default color, can be overridden inline */
+    margin-right: 10px;
+}
+
+.color-block-student {
+    width: 20px;
+    height: 20px;
+    background-color: #FF7A00; /* Default color, can be overridden inline */
+    margin-right: 10px;
+}
+
+.key-text {
+    font-size: 16px;
+}

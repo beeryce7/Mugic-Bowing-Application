@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,7 +23,7 @@ export default function BasicMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        Dashboard
+      <div className="nav-item"><FormatListBulletedIcon style={{ color: 'white' }} /></div>
       </Button>
       <Menu
         id="basic-menu"

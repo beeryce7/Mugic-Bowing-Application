@@ -17,3 +17,38 @@
     margin-left: 20px;
     margin-right: 20px;
 }
+
+
+
+.new-graph {
+    display: flex;
+    margin:  100px;
+    font-size: 100px;
+    justify-content: center;
+    align-items: center; 
+    font-weight: var(--main-font-weight);
+}
+
+
+.new-logo {
+    display: flex;
+    margin: 0 20px;
+    font-size: 28px;
+    justify-content: center;
+    align-items: center; 
+    font-weight: var(--main-font-weight);
+}
+
+
+.new-recenter
+{
+    display: flex;
+    margin: 0 20px;
+    justify-content: center;
+    align-items: center; 
+}
+
+.offset-left
+{
+    margin-right: 20px;
+}
