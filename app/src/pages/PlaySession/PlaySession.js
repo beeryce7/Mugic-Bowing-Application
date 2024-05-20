@@ -2,8 +2,8 @@ import React from 'react';
 import './PlaySession.css'; 
 import Header from '../../components/PlaySession/Header';
 import SessionState from '../../components/PlaySession/SessionState';
-import DividerStack from '../../components/PlaySession/DividerStack';
-import Visualizer from '../../components/visualizer/visualizer';
+//import DividerStack from '../../components/PlaySession/DividerStack';
+import Visualizer from '../../components/visualizer/Visualizer';
 
 
 const PlaySession = () => {
