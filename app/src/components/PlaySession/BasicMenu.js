@@ -2,10 +2,16 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import recordingDataSlice from '../../slices/recordingDataSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const recordingData = useSelector((state) => state.recordingData.data)
+  const recordingStartTime = useSelector((state) => state.recordingData.recordingStartTime)
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -14,8 +20,19 @@ export default function BasicMenu() {
   };
 
   const handleSave = () => {
+    
+    console.log("data:" + recordingData.toString())
+    console.log("hi")
+    window.electronAPI.saveFile(buildRecordingFile(recordingData, recordingStartTime));
     handleClose();
-    window.electronAPI.saveFile("sample data");
+  }
+  const buildRecordingFile = (recordingData, recordingStartTime) => {
+    var str = ""
+    str += recordingStartTime.toString() + "\n"
+    recordingData.forEach(element => {
+      str += element.toString() + "\n"
+    })
+    return str
   }
 
   return (
@@ -39,7 +56,7 @@ export default function BasicMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>Save</MenuItem>
-        <MenuItem onClick={handleClose}>Save As</MenuItem>
+        <MenuItem onClick={handleSave}>Save As</MenuItem>
         <MenuItem onClick={handleClose}>Return to Home</MenuItem>
         <MenuItem onClick={handleClose}>Quit Mugic</MenuItem>
       </Menu>

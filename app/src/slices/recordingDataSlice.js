@@ -11,10 +11,10 @@ export const beginCountdown = createAsyncThunk(
 const recordingDataSlice = createSlice({
         name: 'recordingData',
         initialState:{
-            data: [],
+            data: [[2,3,4],[2,3,4],[2,3,4]],
             isRecording: false,
             countdown: 3,
-            recordingStartTime: 0,
+            recordingStartTime: Date.now(),
         },
         reducers: {
             clearRecording(state) {
