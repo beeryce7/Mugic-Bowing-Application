@@ -38,17 +38,13 @@ const Visualizer = () => {
     const delay = ms => new Promise(res => setTimeout(res, ms));
 
     const addLinePoint = (x, y) => {
-        var points = [x, y, ...lineData];
-        if (points.length > lineLength * 2) {
-            points = points.slice(0, -2);
+        lineData.push(x);
+        lineData.push(y);
+        if (lineData.length > lineLength) {
+            lineData.shift();
+            lineData.shift();
         }
-        // lineData.push(x);
-        // lineData.push(y);
-        // if (lineData.length > lineLength) {
-        //     lineData.shift();
-        //     lineData.shift();
-        // }
-        updateLineData(points);
+        updateLineData(lineData);
     }
 
     const updateData = (msg) => {
@@ -76,7 +72,7 @@ const Visualizer = () => {
             circleRef.current.to({
                 x: dotData.x,
                 y: dotData.y,
-                duration: 0.1
+                duration: 0.05
             })
         }
         if (lineRef.current != null) {
