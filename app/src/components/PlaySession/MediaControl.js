@@ -1,5 +1,5 @@
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import StopOutlinedIcon from '@mui/icons-material/StopOutlined';
 import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined';
@@ -12,13 +12,30 @@ const MediaControl = () => {
 
     const dispatch = useDispatch()
     const isRecording = useSelector((state) => state.recordingData.isRecording)
+    const recordingStartTime = useSelector((state) => state.recordingData.recordingStartTime)
     const data = useSelector((state) => state.recordingData.data)
-
     const mugicData = useSelector((state) => state.mugicData.data);
+
+    const [secondsElapsed, setSecondsElapsed] = useState(0)
+
+    const updateTimeElapsed = () => {
+        if(isRecording){
+            setSecondsElapsed(Math.round((Date.now() - recordingStartTime) / 1000))
+        }
+        else{
+            setSecondsElapsed(0)
+        }
+    }
   
     useEffect(() => {
        dispatch(listenToMugicData());
     }, [dispatch]);
+
+    useEffect(() => {
+        const interval = setInterval(() => updateTimeElapsed(), 1000)
+    })
+
+
 
 
     const handlePlay = () => {
@@ -67,6 +84,9 @@ const MediaControl = () => {
                 }}
             />
             )}
+            <p>
+                {secondsElapsed}
+            </p>
 
         </>
     );
