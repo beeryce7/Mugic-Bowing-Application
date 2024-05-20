@@ -1,0 +1,19 @@
+.media {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+
+}
+
+.media-items {
+    display: flex;
+}
+
+.box{
+    border-radius: 20px;
+    border-width: 2px;
+    border-style: solid;
+
+    margin-left: 20px;
+    margin-right: 20px;
+}
