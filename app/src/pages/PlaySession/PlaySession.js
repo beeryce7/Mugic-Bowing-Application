@@ -12,12 +12,12 @@ const PlaySession = () => {
     <Header/>
     <div className="top-graph">Block Teacher</div>
     <div className="top-graph">Block Student</div>
-
+    <Visualizer/>
     <SessionState/>
     <h2>Stats</h2>
     <li> Accuracy</li>
     <li>Angle</li>
-    <Visualizer/>
+    
 
     </div> 
   );
