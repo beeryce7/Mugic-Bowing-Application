@@ -26,7 +26,6 @@ const Home = () => {
       <h2 className="text_style">
         Recent Files
       </h2>
-      <SaveLoad/>
     </div> 
   );
 };
