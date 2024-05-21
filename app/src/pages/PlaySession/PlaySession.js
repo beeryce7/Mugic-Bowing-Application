@@ -2,7 +2,8 @@ import React from 'react';
 import './PlaySession.css'; 
 import Header from '../../components/PlaySession/Header';
 import SessionState from '../../components/PlaySession/SessionState';
-import MugicTracker from '../../components/mugic_tracker/MugicTracker';
+//import DividerStack from '../../components/PlaySession/DividerStack';
+import Visualizer from '../../components/visualizer/Visualizer';
 
 
 const PlaySession = () => {
@@ -16,7 +17,7 @@ const PlaySession = () => {
     <h2>Stats</h2>
     <li> Accuracy</li>
     <li>Angle</li>
-    {/* <MugicTracker/> */}
+    <Visualizer/>
 
     </div> 
   );
