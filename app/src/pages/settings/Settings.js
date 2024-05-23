@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { listenToMugicData } from '../../slices/mugicDataSlice';
 */
 
-//import { selectData } from '../../slices/mugicDataSlice';
+import { selectData } from '../../slices/mugicDataSlice';
 
 
 
@@ -23,9 +23,7 @@ const Settings = () => {
   }, [dispatch]);
   */
 
-  const yaw = useSelector((state) => state.mugicData.data.yaw)
-
-
+  const mugicData = useSelector((state) => state.mugicData.data);
 
   return (
     <div>
@@ -36,7 +34,7 @@ const Settings = () => {
       <Grid container spacing={2}>
         <Grid item xs={6}>
          <InfoContainer title="Yaw">
-          {yaw}
+          {mugicData.yaw}
          </InfoContainer>
         </Grid>
         <Grid item xs={6}>
@@ -46,7 +44,7 @@ const Settings = () => {
         </Grid>
         <Grid item xs={6}>
          <InfoContainer title="Pitch">
-          {0}
+          {mugicData.pitch}
          </InfoContainer>
         </Grid>
         <Grid item xs={6}>
@@ -56,7 +54,7 @@ const Settings = () => {
         </Grid>
         <Grid item xs={6}>
          <InfoContainer title="Roll">
-         {0}
+         {mugicData.roll}
          </InfoContainer>
         </Grid>
         <Grid item xs={6}>

@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { buildCreateSlice, asyncThunkCreator } from '@reduxjs/toolkit'
 import {addRecordingPointIfRecording} from './recordingDataSlice';
 
+//setup for using async thunks in createSlice
 const createAppSlice = buildCreateSlice({
   creators: { asyncThunk: asyncThunkCreator },
 })
@@ -68,9 +69,13 @@ export const mugicDataSlice = createAppSlice({
     retrieveMugicData: create.asyncThunk(async (state) => {
       console.log("retrieving data")
       let msg = await window.electronAPI.retrieveMugicData()
-      state.data = quaternionToEuler(msg[13], msg[14], msg[15], msg[16])
-      console.log(quaternionToEuler(msg[13], msg[14], msg[15], msg[16]))
-
+      return msg
+    }, 
+    {
+      fulfilled: (state, action) => {
+        let msg = action.payload
+        state.data = quaternionToEuler(msg[13], msg[14], msg[15], msg[16])
+      }
     }),
   }),
 
