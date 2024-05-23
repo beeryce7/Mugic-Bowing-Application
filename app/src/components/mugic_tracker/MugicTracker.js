@@ -45,25 +45,6 @@ const MugicTracker = ({mugicData, updateData}) => {
 
   return (
       <div>
-        <h2>
-          Mugic Tracker
-        </h2>
-
-        {/* {isConnected ? (
-          <div>
-            <p>Acceleration: {mugicData.accel}</p>
-            <p>Gyro: {mugicData.gyro}</p>
-            <p>Euler Angles: {mugicData.euler}</p>
-            <p>Quaternions: {mugicData.quatern}</p>
-            <p>Battery: {mugicData.battery}</p>
-            <p>Sequence Number: {mugicData.seqNum}</p>
-          </div>
-        ) : (
-          <div>
-            <p> Not connected! </p>
-          </div>
-        )} */}
-
 
       </div>
   );
