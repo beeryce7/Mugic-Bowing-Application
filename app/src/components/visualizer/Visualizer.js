@@ -1,9 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Visualizer.css"
 import MugicTracker from "../mugic_tracker/MugicTracker";
 import { Stage, Layer, Line, Circle } from "react-konva";
 import { Spring, animated } from "@react-spring/konva";
 import { duration } from "@mui/material";
+import { useSelector } from 'react-redux';
+
 
 const Visualizer = () => {
     const width = 500;
@@ -17,15 +19,15 @@ const Visualizer = () => {
     const lineLifetime = 10;
     const lineLength = 20;
 
+    const mugicData = useSelector((state) => state.mugicData.data);
 
-    const[mugicData, setMugicData] = useState({
-        accel: [0,0,0],
-        euler: [0,0,0],
-        gyro: [0,0,0],
-        quatern: [0,0,0,0],
-        battery: 0,
-        seqNum: 0,
-    })
+
+    //update dot whenever mugicData is changed
+    useEffect(() => {
+        updateDot()
+    }, [mugicData])
+
+
 
     const[dotData, updateDotData] = useState({
         x: 0,
@@ -47,25 +49,13 @@ const Visualizer = () => {
         updateLineData(lineData);
     }
 
-    const updateData = (msg) => {
-        setMugicData({
-            accel: [msg[1], msg[2], msg[3]],
-            euler: [msg[4],msg[5],msg[6]],
-            gyro: [msg[7], msg[8], msg[9]],
-            quatern: [msg[13], msg[14], msg[15], msg[16]],
-            battery: msg[17],
-            seqNum: msg[24],
-        });
-        updateDot();
-    }
-
     var circleRef = useRef(null);
     var lineRef = useRef(null);
 
     const updateDot = () => {
         updateDotData({
-            x: ((mugicData.euler[2] - minRoll) / (maxRoll - minRoll)) * width,
-            y: ((mugicData.euler[0] - minYaw) / (maxYaw - minYaw)) * height,
+            x: ((mugicData.roll - minRoll) / (maxRoll - minRoll)) * width,
+            y: ((mugicData.yaw - minYaw) / (maxYaw - minYaw)) * height,
         })
         addLinePoint(dotData.x, dotData.y);
         if (circleRef.current != null) {
@@ -89,7 +79,7 @@ const Visualizer = () => {
 
     return (
         <div>
-            <MugicTracker mugicData={mugicData} updateData={updateData}/>
+            {/* <MugicTracker mugicData={mugicData} updateData={updateData}/> */}
             <Stage width={width} height={height}>
 
                 <Layer>

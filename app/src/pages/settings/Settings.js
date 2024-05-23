@@ -5,13 +5,6 @@ import { Grid, Container, Switch } from '@mui/material';
 import InfoContainer from '../../components/settings/InfoContainer';
 
 import { useSelector, useDispatch } from 'react-redux';
-/*
-import { listenToMugicData } from '../../slices/mugicDataSlice';
-*/
-
-import { selectData } from '../../slices/mugicDataSlice';
-
-
 
 const Settings = () => {
   /*

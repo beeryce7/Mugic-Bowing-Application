@@ -21,7 +21,5 @@ window.addEventListener('DOMContentLoaded', () => {
 contextBridge.exposeInMainWorld('electronAPI', {
   loadFile: () => ipcRenderer.invoke("load-file"),
   saveFile: (data) => ipcRenderer.send('save-file', data),
-  onMugicError: (callback) => ipcRenderer.on('mugic-error', (_event, value) => callback(value)),
-  onMugicMessage: (callback) => ipcRenderer.on('mugic-message', (_event, value) => callback(value)),
   retrieveMugicData: () => ipcRenderer.invoke("retrieve-mugic")
 })

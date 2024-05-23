@@ -74,7 +74,7 @@ app.whenReady().then(() => {
           isConnecting = false;
           console.log('Error')
           console.log(err);
-          mainWindow.webContents.send('mugic-error', err);
+          mugicData = err //need to see if this works, havent tested
           retryConnection(err);
         });
 
@@ -82,7 +82,6 @@ app.whenReady().then(() => {
           mugicData = msg
           if (performance.now() - lastPoll >= minPollDelay)
           {
-            mainWindow.webContents.send('mugic-message', msg);
             lastPoll = performance.now()
           }
           resetRetryCount();
