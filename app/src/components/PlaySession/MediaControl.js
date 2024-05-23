@@ -6,15 +6,12 @@ import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheck
 
 import { startRecording, stopRecording } from '../../slices/recordingDataSlice'
 import { useDispatch, useSelector } from 'react-redux';
-import { listenToMugicData } from '../../slices/mugicDataSlice';
 
 const MediaControl = () => {
 
     const dispatch = useDispatch()
     const isRecording = useSelector((state) => state.recordingData.isRecording)
     const recordingStartTime = useSelector((state) => state.recordingData.recordingStartTime)
-    const data = useSelector((state) => state.recordingData.data)
-    const mugicData = useSelector((state) => state.mugicData.data);
 
     const [secondsElapsed, setSecondsElapsed] = useState(0)
 
@@ -23,14 +20,6 @@ const MediaControl = () => {
     const updateTimeElapsed = () => {
         setSecondsElapsed(Math.round((Date.now() - recordingStartTime) / 1000))
     }
-  
-    useEffect(() => {
-       dispatch(listenToMugicData());
-    }, [dispatch]);
-
-
-
-
 
     const handlePlay = () => {
         console.log("play")

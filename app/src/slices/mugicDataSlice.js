@@ -7,10 +7,11 @@ const createAppSlice = buildCreateSlice({
   creators: { asyncThunk: asyncThunkCreator },
 })
 
+/*
 export const listenToMugicData = createAsyncThunk(
   'mugicData/listenToMugicData',
   async (_, { dispatch }) => {
-    /*
+    
     window.electronAPI.onMugicMessage((msg) => {
       let q0 = msg[13]
       let q1 = msg[14]
@@ -34,9 +35,10 @@ export const listenToMugicData = createAsyncThunk(
       }, 300);
       
     });
-    */
+    
   }
 );
+*/
 
 function quaternionToEuler(q0, q1, q2, q3){
   let yr = -Math.atan(-2 * q1 * q2 + 2 * q0 * q3, q2 * q2 - q3 * q3 - q1 * q1 + q0 * q0);
@@ -86,6 +88,8 @@ export const mugicDataSlice = createAppSlice({
 
 // Action creators are generated for each case reducer function
 export const { updateMugicData, retrieveMugicData } = mugicDataSlice.actions
+
+
 export const { selectData } = mugicDataSlice.selectors
 
 export default mugicDataSlice.reducer
