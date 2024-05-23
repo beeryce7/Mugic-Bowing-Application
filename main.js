@@ -9,6 +9,8 @@ const addressPortMUGIC = 4000;
 const minPollDelay = 100;
 var oscServer = 0;
 
+var mugicData = []
+
 function createMainWindow() {
     mainWindow = new BrowserWindow({
         title: 'MUGIC BOWING',
@@ -51,6 +53,7 @@ app.whenReady().then(() => {
 
     ipcMain.on('save-file', handleSaveFile)
     ipcMain.handle('load-file', handleLoadFile)
+    ipcMain.handle('retrieve-mugic', handleRetrieveMugicData)
 
     // Start communication with MUGIC device
     let isConnected = false;
@@ -76,6 +79,7 @@ app.whenReady().then(() => {
         });
 
         oscServer.on('message', function (msg, rinfo) {
+          mugicData = msg
           if (performance.now() - lastPoll >= minPollDelay)
           {
 
@@ -204,4 +208,8 @@ async function handleLoadFile (event, data) {
       message: "",
     }
   }
+}
+
+async function handleRetrieveMugicData() {
+  return mugicData
 }

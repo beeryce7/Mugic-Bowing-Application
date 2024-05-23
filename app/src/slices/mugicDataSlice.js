@@ -1,10 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { buildCreateSlice, asyncThunkCreator } from '@reduxjs/toolkit'
 import {addRecordingPointIfRecording} from './recordingDataSlice';
 
+const createAppSlice = buildCreateSlice({
+  creators: { asyncThunk: asyncThunkCreator },
+})
 
 export const listenToMugicData = createAsyncThunk(
   'mugicData/listenToMugicData',
   async (_, { dispatch }) => {
+    /*
     window.electronAPI.onMugicMessage((msg) => {
       let q0 = msg[13]
       let q1 = msg[14]
@@ -28,11 +33,24 @@ export const listenToMugicData = createAsyncThunk(
       }, 300);
       
     });
+    */
   }
 );
 
+function quaternionToEuler(q0, q1, q2, q3){
+  let yr = -Math.atan(-2 * q1 * q2 + 2 * q0 * q3, q2 * q2 - q3 * q3 - q1 * q1 + q0 * q0);
+  let pr = Math.asin(2 * q2 * q3 + 2 * q0 * q1);
+  let rr = Math.atan2(-2 * q1 * q3 + 2 * q0 * q2, q3 * q3 - q2 * q2 - q1 * q1 + q0 * q0);
 
-export const mugicDataSlice = createSlice({
+  return {
+    yaw: Math.round(yr * 180 / Math.PI),
+    pitch: Math.round(pr * 180 / Math.PI),
+    roll: Math.round(rr * 180 / Math.PI),
+  }
+}
+
+
+export const mugicDataSlice = createAppSlice({
   name: 'mugicData',
   initialState: {
     data: {
@@ -41,14 +59,19 @@ export const mugicDataSlice = createSlice({
         roll: 0,
     },
   },
-  reducers: {
-    updateMugicData: (state, action) => {
+  reducers: (create) => ({
+    updateMugicData: create.reducer((state, action) => {
       state.data = action.payload;
-    },
-  },
+    }),
+    retrieveMugicData: create.asyncThunk(async (state) => {
+      let msg = await window.electronAPI.retrieveMugicData()
+      console.log(msg)
+      state.data = quaternionToEuler(msg[13], msg[14], msg[15], msg[16])
+    }),
+  }),
 })
 
 // Action creators are generated for each case reducer function
-export const { updateMugicData } = mugicDataSlice.actions
+export const { updateMugicData, retrieveMugicData } = mugicDataSlice.actions
 
 export default mugicDataSlice.reducer
