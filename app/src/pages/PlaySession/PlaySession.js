@@ -2,24 +2,29 @@ import React from 'react';
 import './PlaySession.css'; 
 import Header from '../../components/PlaySession/Header';
 import SessionState from '../../components/PlaySession/SessionState';
-import MugicTracker from '../../components/mugic_tracker/MugicTracker';
+//import DividerStack from '../../components/PlaySession/DividerStack';
+import Visualizer from '../../components/visualizer/Visualizer';
 
 
 const PlaySession = () => {
   return (
     <div>
-    <Header/>
-    <div className="top-graph"><div className="key"><div class="color-block-teacher"></div><div className="change-font">Teacher</div></div></div>
-    <div className="top-graph"><div className="key"><div class="color-block-student"></div><div className="change-font">Student</div></div></div>
-    <div className="be-on-right">00:00:00</div>
-    <div className="new-graph">GRAPH</div>
+        <Header/>
+        <div className="top-graph"><div className="key"><div class="color-block-teacher"></div><div className="change-font">Teacher</div></div></div>
+        <div className="top-graph"><div className="key"><div class="color-block-student"></div><div className="change-font">Student</div></div></div>
+        <div className="be-on-right">00:00:00</div>
 
-    <SessionState/>
-    <div className="offset-right"><div className="lower-box"> <h1>Stats</h1>
-    <li> Accuracy</li>
-    <li>Angle</li></div></div>
-    {/* <MugicTracker/> */}
+        <div className="new-graph">
+            <Visualizer/>
+        </div>
 
+        <SessionState/>
+        <div className="offset-right">
+            <div className="lower-box"> <h1>Stats</h1>
+                <li> Accuracy</li>
+                <li>Angle</li>
+            </div>
+        </div>
     </div> 
   );
 };

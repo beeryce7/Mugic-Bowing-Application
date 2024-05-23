@@ -2,6 +2,7 @@ import React from 'react';
 import CustomButton from '../../components/CustomButton';
 import './Home.css'; 
 import Header from '../../components/home/Header';
+import SaveLoad from '../../components/mugic_tracker/SaveLoad';
 
 const Home = () => {
   return (

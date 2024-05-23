@@ -12,12 +12,22 @@ const SaveLoad = () => {
         setFile("file saved!")
         
     }
+
+    async function loadFile() {
+
+      var data = await window.electronAPI.loadFile()
+      
+      console.log("data recieved: " + JSON.stringify(data))
+      setFile("file loaded!")
+  }
+
     return (
         <div className="container">
           <h1>Save Test</h1>
           <p>{file}</p>
           
           <CustomButton onClick={saveFile} text="save file" ></CustomButton>
+          <CustomButton onClick={loadFile} text="load file" ></CustomButton>
         </div>
       );
 };

@@ -2,9 +2,11 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const url = require('url');
 const path = require('path');
 const osc = require('node-osc');
+const fs = require('fs');
 
 const oscAvailableIPRange = "0.0.0.0";
 const addressPortMUGIC = 4000;
+const minPollDelay = 100;
 var oscServer = 0;
 
 function createMainWindow() {
@@ -38,6 +40,8 @@ function createMainWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
     var mainWindow = createMainWindow()
+
+    var lastPoll = performance.now()
   
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
@@ -46,6 +50,7 @@ app.whenReady().then(() => {
     })
 
     ipcMain.on('save-file', handleSaveFile)
+    ipcMain.handle('load-file', handleLoadFile)
 
     // Start communication with MUGIC device
     let isConnected = false;
@@ -71,9 +76,12 @@ app.whenReady().then(() => {
         });
 
         oscServer.on('message', function (msg, rinfo) {
-          console.log("msg");
-          console.log(msg);
-          mainWindow.webContents.send('mugic-message', msg);
+          if (performance.now() - lastPoll >= minPollDelay)
+          {
+
+            mainWindow.webContents.send('mugic-message', msg);
+            lastPoll = performance.now()
+          }
           resetRetryCount();
         });
       }
@@ -107,39 +115,7 @@ app.whenReady().then(() => {
     openAndListenToMugic(4000, "0.0.0.0")
   })
 
-  async function handleSaveFile (event, data) {
-    const fs = require('fs')
-  
-    console.log("saving file")
-  
-    dialog.showSaveDialog({ 
-      title: 'Select path to save recording', 
-      defaultPath: path.join(__dirname, '/assets/recording.txt'), 
-      buttonLabel: 'Save', 
-      filters: [ 
-          { 
-              name: 'Text Files', 
-              extensions: ['txt', 'docx'] 
-          }, ], 
-      properties: [] 
-    }).then(file => { 
-      if (!file.canceled) { 
-          fs.writeFile(file.filePath.toString(), data, function (err) { 
-              if (err) throw err; 
-              console.log("Saved at location:" + file.filePath.toString()); 
-          }); 
-      }
-      else{
-        console.log("cancelled")
-      }
-    }).catch(err => { 
-      console.log(err) 
-    }); 
-  
-  }
 
-  
-  
   // Quit when all windows are closed, except on macOS. There, it's common
   // for applications and their menu bar to stay active until the user quits
   // explicitly with Cmd + Q.
@@ -153,3 +129,79 @@ app.whenReady().then(() => {
   
   // In this file you can include the rest of your app's specific main process
   // code. You can also put them in separate files and require them here.
+
+async function handleSaveFile (event, data) {
+  console.log("saving file")
+
+  dialog.showSaveDialog({ 
+    title: 'Select path to save recording', 
+    defaultPath: path.join(__dirname, '/assets/recording.txt'), 
+    buttonLabel: 'Save', 
+    filters: [ 
+        { 
+            name: 'Text Files', 
+            extensions: ['txt', 'docx'] 
+        }, ], 
+    properties: [] 
+  }).then(file => { 
+    if (!file.canceled) { 
+        fs.writeFile(file.filePath.toString(), data, function (err) { 
+            if (err){
+              throw err; 
+            } 
+            console.log("Saved at location:" + file.filePath.toString()); 
+        }); 
+    }
+    else{
+      console.log("cancelled")
+    }
+  }).catch(err => { 
+    console.log(err) 
+  }); 
+
+}
+
+async function handleLoadFile (event, data) {
+  console.log("loading file")
+
+  fileInfo = await dialog.showOpenDialog({ 
+    title: 'Select recording file to load', 
+    defaultPath: path.join(__dirname, '/assets/recording.txt'), 
+    buttonLabel: 'Load', 
+    filters: [ 
+        { 
+            name: 'Text Files', 
+            extensions: ['txt', 'docx'] 
+        }, ], 
+    properties: [
+      'openFile'
+    ] 
+  })
+
+  console.log(fileInfo)
+
+  if (!fileInfo.canceled) { //right now is setup synchronously, may cause a moment of lag upon loading a large file
+    /*
+      fs.readFile(file.filePaths[0], 'utf8', function (err, data) { 
+          if (err) {
+            throw err; 
+          }
+          console.log("data loaded: " + data); 
+          return data;
+      }); 
+      */
+    var text = fs.readFileSync(fileInfo.filePaths[0], 'utf8')
+    console.log("read:" + text)
+    
+    return {
+      cancelled: false,
+      message: text
+    }
+  }
+  else{
+    return {
+      cancelled: true,
+      message: "",
+    }
+  }
+}
