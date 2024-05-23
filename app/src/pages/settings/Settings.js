@@ -5,15 +5,27 @@ import { Grid, Container, Switch } from '@mui/material';
 import InfoContainer from '../../components/settings/InfoContainer';
 
 import { useSelector, useDispatch } from 'react-redux';
+/*
 import { listenToMugicData } from '../../slices/mugicDataSlice';
+*/
+
+//import { selectData } from '../../slices/mugicDataSlice';
+
+
 
 const Settings = () => {
+  /*
   const dispatch = useDispatch();
   const mugicData = useSelector((state) => state.mugicData.data);
 
   useEffect(() => {
     dispatch(listenToMugicData());
   }, [dispatch]);
+  */
+
+  const yaw = useSelector((state) => state.mugicData.data.yaw)
+
+
 
   return (
     <div>
@@ -24,7 +36,7 @@ const Settings = () => {
       <Grid container spacing={2}>
         <Grid item xs={6}>
          <InfoContainer title="Yaw">
-          {mugicData.yaw}
+          {yaw}
          </InfoContainer>
         </Grid>
         <Grid item xs={6}>
@@ -34,7 +46,7 @@ const Settings = () => {
         </Grid>
         <Grid item xs={6}>
          <InfoContainer title="Pitch">
-          {mugicData.pitch}
+          {0}
          </InfoContainer>
         </Grid>
         <Grid item xs={6}>
@@ -44,7 +56,7 @@ const Settings = () => {
         </Grid>
         <Grid item xs={6}>
          <InfoContainer title="Roll">
-         {mugicData.roll}
+         {0}
          </InfoContainer>
         </Grid>
         <Grid item xs={6}>

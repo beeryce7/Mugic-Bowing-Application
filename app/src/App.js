@@ -8,10 +8,10 @@ import { retrieveMugicData } from './slices/mugicDataSlice.js';
 
 function App() {
 
+  const POLL_RATE_MS = 50
   const dispatch = useDispatch()
 
-  const interval = setInterval(() => dispatch(retrieveMugicData()), 1000)
-  console.log(window.electronAPI.retrieveMugicData())
+  const interval = setInterval(() => dispatch(retrieveMugicData()), POLL_RATE_MS)
 
   return (
     <HashRouter>

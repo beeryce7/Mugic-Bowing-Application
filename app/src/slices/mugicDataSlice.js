@@ -52,6 +52,7 @@ function quaternionToEuler(q0, q1, q2, q3){
 
 export const mugicDataSlice = createAppSlice({
   name: 'mugicData',
+
   initialState: {
     data: {
         yaw: 0,
@@ -59,19 +60,27 @@ export const mugicDataSlice = createAppSlice({
         roll: 0,
     },
   },
+
   reducers: (create) => ({
     updateMugicData: create.reducer((state, action) => {
       state.data = action.payload;
     }),
     retrieveMugicData: create.asyncThunk(async (state) => {
+      console.log("retrieving data")
       let msg = await window.electronAPI.retrieveMugicData()
-      console.log(msg)
       state.data = quaternionToEuler(msg[13], msg[14], msg[15], msg[16])
+      console.log(quaternionToEuler(msg[13], msg[14], msg[15], msg[16]))
+
     }),
   }),
+
+  selectors: {
+    selectData: (state) => state.data
+  }
 })
 
 // Action creators are generated for each case reducer function
 export const { updateMugicData, retrieveMugicData } = mugicDataSlice.actions
+export const { selectData } = mugicDataSlice.selectors
 
 export default mugicDataSlice.reducer

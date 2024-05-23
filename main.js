@@ -6,7 +6,7 @@ const fs = require('fs');
 
 const oscAvailableIPRange = "0.0.0.0";
 const addressPortMUGIC = 4000;
-const minPollDelay = 100;
+const minPollDelay = 0;
 var oscServer = 0;
 
 var mugicData = []
@@ -67,12 +67,12 @@ app.whenReady().then(() => {
         isConnecting = true;
 
         oscServer = new osc.Server(addressPortMUGIC, oscAvailableIPRange, () => {
-          console.log("listening")
+          console.log("Listening to Mugic")
+          console.log("Server info:\n" + oscServer + "\n")
         });
-        console.log(oscServer)
         oscServer.on('error', function (err) {
           isConnecting = false;
-          console.log('error')
+          console.log('Error')
           console.log(err);
           mainWindow.webContents.send('mugic-error', err);
           retryConnection(err);
@@ -82,7 +82,6 @@ app.whenReady().then(() => {
           mugicData = msg
           if (performance.now() - lastPoll >= minPollDelay)
           {
-
             mainWindow.webContents.send('mugic-message', msg);
             lastPoll = performance.now()
           }
@@ -108,9 +107,9 @@ app.whenReady().then(() => {
         }
       }
       try {
-      console.log("connecting")
       connect(); // Initial connection attempt
       isConnected = true;
+      console.log("Successfully Connected to MUGIC")
       }catch(err){
         retryConnection(err)
       }
