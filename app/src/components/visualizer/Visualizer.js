@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Visualizer.css"
-import MugicTracker from "../mugic_tracker/MugicTracker";
 import { Stage, Layer, Line, Circle } from "react-konva";
 import { Spring, animated } from "@react-spring/konva";
 import { duration } from "@mui/material";

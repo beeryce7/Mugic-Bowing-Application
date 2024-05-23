@@ -63,13 +63,20 @@ app.whenReady().then(() => {
       let isConnecting = false; // Track if a connection attempt is ongoing
 
       function connect() {
-        if (isConnecting) return; // Don't start a new connection if one is ongoing
+        if (isConnecting){
+          return; // Don't start a new connection if one is ongoing
+        } 
+
         isConnecting = true;
 
         oscServer = new osc.Server(addressPortMUGIC, oscAvailableIPRange, () => {
-          console.log("Listening to Mugic")
-          console.log("Server info:\n" + oscServer + "\n")
+          console.log("Attempting Connection to Mugic")
+          
         });
+
+        console.log("Server info:\n")
+        console.log(oscServer)
+
         oscServer.on('error', function (err) {
           isConnecting = false;
           console.log('Error')
@@ -79,10 +86,16 @@ app.whenReady().then(() => {
         });
 
         oscServer.on('message', function (msg, rinfo) {
-          mugicData = msg
+          if(isConnected == false){
+
+            isConnected = true;
+            console.log("Successfully Connected to MUGIC")
+          }
+
           if (performance.now() - lastPoll >= minPollDelay)
           {
             lastPoll = performance.now()
+            mugicData = msg
           }
           resetRetryCount();
         });
@@ -105,11 +118,11 @@ app.whenReady().then(() => {
           console.log('Max retries reached. Could not establish a connection.');
         }
       }
+
       try {
-      connect(); // Initial connection attempt
-      isConnected = true;
-      console.log("Successfully Connected to MUGIC")
-      }catch(err){
+        connect(); // Initial connection attempt
+      }
+      catch(err){
         retryConnection(err)
       }
     }
