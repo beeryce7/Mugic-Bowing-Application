@@ -5,15 +5,10 @@ import { Grid, Container, Switch } from '@mui/material';
 import InfoContainer from '../../components/settings/InfoContainer';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { listenToMugicData } from '../../slices/mugicDataSlice';
 
 const Settings = () => {
-  const dispatch = useDispatch();
-  const mugicData = useSelector((state) => state.mugicData.data);
 
-  useEffect(() => {
-    dispatch(listenToMugicData());
-  }, [dispatch]);
+  const mugicData = useSelector((state) => state.mugicData.data);
 
   return (
     <div>
