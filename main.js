@@ -6,8 +6,10 @@ const fs = require('fs');
 
 const oscAvailableIPRange = "0.0.0.0";
 const addressPortMUGIC = 4000;
-const minPollDelay = 100;
+const minPollDelay = 0;
 var oscServer = 0;
+
+var mugicData = []
 
 function createMainWindow() {
     mainWindow = new BrowserWindow({
@@ -51,6 +53,7 @@ app.whenReady().then(() => {
 
     ipcMain.on('save-file', handleSaveFile)
     ipcMain.handle('load-file', handleLoadFile)
+    ipcMain.handle('retrieve-mugic', handleRetrieveMugicData)
 
     // Start communication with MUGIC device
     let isConnected = false;
@@ -60,27 +63,39 @@ app.whenReady().then(() => {
       let isConnecting = false; // Track if a connection attempt is ongoing
 
       function connect() {
-        if (isConnecting) return; // Don't start a new connection if one is ongoing
+        if (isConnecting){
+          return; // Don't start a new connection if one is ongoing
+        } 
+
         isConnecting = true;
 
         oscServer = new osc.Server(addressPortMUGIC, oscAvailableIPRange, () => {
-          console.log("listening")
+          console.log("Attempting Connection to Mugic")
+          
         });
+
+        console.log("Server info:\n")
         console.log(oscServer)
+
         oscServer.on('error', function (err) {
           isConnecting = false;
-          console.log('error')
+          console.log('Error')
           console.log(err);
-          mainWindow.webContents.send('mugic-error', err);
+          mugicData = err //need to see if this works, havent tested
           retryConnection(err);
         });
 
         oscServer.on('message', function (msg, rinfo) {
+          if(isConnected == false){
+
+            isConnected = true;
+            console.log("Successfully Connected to MUGIC")
+          }
+
           if (performance.now() - lastPoll >= minPollDelay)
           {
-
-            mainWindow.webContents.send('mugic-message', msg);
             lastPoll = performance.now()
+            mugicData = msg
           }
           resetRetryCount();
         });
@@ -103,11 +118,11 @@ app.whenReady().then(() => {
           console.log('Max retries reached. Could not establish a connection.');
         }
       }
+
       try {
-      console.log("connecting")
-      connect(); // Initial connection attempt
-      isConnected = true;
-      }catch(err){
+        connect(); // Initial connection attempt
+      }
+      catch(err){
         retryConnection(err)
       }
     }
@@ -204,4 +219,8 @@ async function handleLoadFile (event, data) {
       message: "",
     }
   }
+}
+
+async function handleRetrieveMugicData() {
+  return mugicData
 }
