@@ -4,8 +4,16 @@ import PlaySession from './pages/PlaySession/PlaySession.js';
 import RecordSession from './pages/RecordSession/RecordSession.js'
 import './global.css';
 import { HashRouter, Routes, Route } from "react-router-dom"
+import { useDispatch } from 'react-redux';
+import { retrieveMugicData } from './slices/mugicDataSlice.js';
 
 function App() {
+
+  const POLL_RATE_MS = 50
+  const dispatch = useDispatch()
+
+  const interval = setInterval(() => dispatch(retrieveMugicData()), POLL_RATE_MS)
+
   return (
     <HashRouter>
       <Routes>
