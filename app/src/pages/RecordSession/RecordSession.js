@@ -2,7 +2,6 @@ import React from 'react';
 import './RecordSession.css'; 
 import Header from '../../components/PlaySession/Header';
 import SessionState from '../../components/PlaySession/SessionState';
-import MugicTracker from '../../components/mugic_tracker/MugicTracker';
 import { Button, Grid } from '@mui/material';
 
 const RecordSession = () => {
