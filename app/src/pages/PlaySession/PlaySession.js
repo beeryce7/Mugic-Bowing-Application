@@ -14,17 +14,9 @@ const PlaySession = () => {
         <div className="top-graph"><div className="key"><div class="color-block-student"></div><div className="change-font">Student</div></div></div>
         <div className="be-on-right">00:00:00</div>
 
-<<<<<<< HEAD
-    <SessionState/>
-    <div className="offset-right"><h2>Stats</h2>
-    <li> Accuracy</li>
-    <li>Angle</li></div>  
-    {/* <MugicTracker/> */}
-=======
         <div className="new-graph">
             <Visualizer/>
         </div>
->>>>>>> 48f9fd2594b13c9cabd519c24cfd36353b1fe052
 
         <SessionState/>
         <div className="offset-right">
