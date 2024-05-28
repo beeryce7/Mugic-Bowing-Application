@@ -1,0 +1,62 @@
+.banner{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 0px;
+
+    background-color: var(--main-background-color);
+    color: var(--main-text-color-invert);
+    font-family: var(--main-font);
+
+    margin-bottom: 20px;
+    font-size: 48px;
+    height: 150px;
+    font-weight: var(--main-font-weight);
+}
+
+.top-graph {
+    margin: 0 100px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.key {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.color-block-teacher {
+    width: 20px;
+    height: 20px;
+    background-color: #1FBCFF; /* Default color, can be overridden inline */
+    margin-right: 10px;
+}
+
+.color-block-student {
+    width: 20px;
+    height: 20px;
+    background-color: #FF7A00; /* Default color, can be overridden inline */
+    margin-right: 10px;
+}
+
+
+.be-on-right
+{
+    font-family: 'Josefin Sans', sans-serif;
+    float: right;
+    display: flex;
+    margin: 0 20px;
+    margin-right: 40px;
+    margin-top: 16px;
+    justify-content: center;
+    align-items: center; 
+}
+
+.change-font
+{
+    font-family: 'Josefin Sans', sans-serif;
+}

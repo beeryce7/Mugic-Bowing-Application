@@ -17,7 +17,7 @@ const PlaySession = () => {
     <SessionState/>
     <div className="offset-right"><h2>Stats</h2>
     <li> Accuracy</li>
-    <li>Angle</li></div>
+    <li>Angle</li></div>  
     {/* <MugicTracker/> */}
 
     </div> 

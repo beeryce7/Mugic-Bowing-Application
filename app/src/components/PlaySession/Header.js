@@ -10,6 +10,7 @@ const Header = () => {
         <div className="new-logo"><Link to="/">μ</Link></div>
         <BasicMenu/>
       </div>
+      <div> Placeholder here</div>
       <div className="new-recenter"><div className="nav-item"><Link to="/settings">Settings</Link> </div></div>
     </div>
   );

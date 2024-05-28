@@ -1,6 +1,7 @@
 import React from 'react';
 import './SessionState.css'; 
 import MediaControl from './MediaControl';
+import { TextField } from '@mui/material';
 
 const SessionState = () => {
   return (
@@ -10,8 +11,11 @@ const SessionState = () => {
         <div className="media-items">
           <MediaControl/>
         </div>
-        <div className="offset-left">Count down is 3 sec</div>
+        
+        <div className="offset">Count down: <span><TextField id="outlined-basic" label="Set Countdown" variant="outlined" /></span></div>
+        <div> Metronome: <TextField id="outlined-basic" label="set Metronome" variant="outlined" /></div>
       </div>
+      
 
     </div>
   );
