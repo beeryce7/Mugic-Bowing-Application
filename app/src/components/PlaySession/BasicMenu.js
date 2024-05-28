@@ -28,7 +28,11 @@ export default function BasicMenu() {
   }
   const buildRecordingFile = (recordingData, recordingStartTime) => {
     var str = ""
+
     str += recordingStartTime.toString() + "\n"
+    str += "Teacher"
+    str += recordingData.length.toString()
+
     recordingData.forEach(element => {
       str += element.toString() + "\n"
     })
