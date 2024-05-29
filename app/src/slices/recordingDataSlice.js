@@ -2,14 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { retrieveMugicData } from "./mugicDataSlice";
 import { quaternionToEuler } from "./mugicDataSlice";
 
-export const beginCountdown = createAsyncThunk(
-    'recordingData/beginCountdown',
-    async(_, {dispatch}) => {
-
-    }
-)
-
-
 const recordingDataSlice = createSlice({
     name: 'recordingData',
 

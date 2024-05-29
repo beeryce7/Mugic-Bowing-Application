@@ -60,8 +60,7 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Save</MenuItem>
-        <MenuItem onClick={handleSave}>Save As</MenuItem>
+        <MenuItem onClick={handleSave}>Save File</MenuItem>
         <MenuItem onClick={handleLoad}>Load File</MenuItem>
         <MenuItem onClick={handleClose}>Return to Home</MenuItem>
         <MenuItem onClick={handleClose}>Quit Mugic</MenuItem>

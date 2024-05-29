@@ -30,13 +30,14 @@ const loadedDataSlice = createSlice({
                 
                 const date = lines[0] ;
                 const hasStudentData = (lines[1] !== "Teacher");
-                const totalLines = lines[2];
+                const totalDataPoints = parseInt(lines[2]);
                 const teacherData = []
                 const studentData = []
 
                 if(!hasStudentData){
-                    console.log(lines)
-                    for(let i = 3; i < totalLines+2; ++i){
+
+                    for(let i = 3; i < totalDataPoints+3; ++i){ //offset of 3
+
                         const line = lines[i].split(',');
                         teacherData.push(line)
                     }
@@ -46,11 +47,13 @@ const loadedDataSlice = createSlice({
 
                 }
                 const payload = {
-                    date: date,
-                    hasStudentData: hasStudentData,
-                    student: studentData,
-                    teacher: teacherData,
-                    fileName: fileName
+                    payload:{
+                        date: date,
+                        hasStudentData: hasStudentData,
+                        student: studentData,
+                        teacher: teacherData,
+                        file: fileName
+                    }
                 }
                 console.log(payload)
                 return payload
@@ -58,8 +61,15 @@ const loadedDataSlice = createSlice({
         },
 
     },
+    selectors: {
+        selectFileName: (state) => state.fileName
+    }
 })
+export default loadedDataSlice.reducer
+
 
 export const { loadRecording } = loadedDataSlice.actions
-export default loadedDataSlice.reducer
+//export const { selectFileName } = loadedDataSlice.getSelectors((state) => state.loadedData)
+//console.log(selectFileName)
+
 

@@ -6,7 +6,8 @@ import loadedDataReducer from '../slices/loadedDataSlice'
 export default configureStore({
   reducer: {
     mugicData: mugicDataReducer,
-    recordingData: recordingDataReducer,
     loadedData: loadedDataReducer,
+    recordingData: recordingDataReducer,
+    
   },
 })
