@@ -5,10 +5,13 @@ import MenuItem from '@mui/material/MenuItem';
 import recordingDataSlice from '../../slices/recordingDataSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { buildTeacherFile } from '../../utils/format';
+import { loadRecording } from '../../slices/loadedDataSlice';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const dispatch = useDispatch()
 
   const recordingData = useSelector((state) => state.recordingData.data)
   const recordingStartTime = useSelector((state) => state.recordingData.recordingStartTime)
@@ -29,7 +32,11 @@ export default function BasicMenu() {
   }
 
    const handleLoad = async () => {
-    const {message, fileName} = await window.electronAPI.loadFile();
+    const {fileName, message, cancelled} = await window.electronAPI.loadFile();
+    if(!cancelled){
+      dispatch(loadRecording(fileName, message))
+    }
+
   }
 
   return (

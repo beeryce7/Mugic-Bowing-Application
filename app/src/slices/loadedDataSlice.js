@@ -29,13 +29,14 @@ const loadedDataSlice = createSlice({
                 const lines = fileString.split('\n');
                 
                 const date = lines[0] ;
-                const hasStudentData = lines[1];
+                const hasStudentData = (lines[1] !== "Teacher");
                 const totalLines = lines[2];
                 const teacherData = []
                 const studentData = []
 
-                if(hasStudentData == "Teacher"){
-                    for(let i = 3; i < 3+totalLines; ++i){
+                if(!hasStudentData){
+                    console.log(lines)
+                    for(let i = 3; i < totalLines+2; ++i){
                         const line = lines[i].split(',');
                         teacherData.push(line)
                     }

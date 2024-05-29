@@ -37,7 +37,6 @@ export const mugicDataSlice = createAppSlice({
     }),
 
     retrieveMugicData: create.asyncThunk(async (state) => {
-      console.log("retrieving data")
       const msg = await window.electronAPI.retrieveMugicData()
       return msg
     }, 

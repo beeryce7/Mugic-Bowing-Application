@@ -3,7 +3,7 @@ export const buildTeacherFile = (recordingData, recordingStartTime) => {
     var str = ""
 
     str += recordingStartTime.toString() + "\n"
-    str += "Teacher + \n"
+    str += "Teacher" + "\n"
     str += recordingData.length.toString() + "\n"
 
     recordingData.forEach(element => {
@@ -11,3 +11,7 @@ export const buildTeacherFile = (recordingData, recordingStartTime) => {
     })
     return str
   }
+
+export const extractDataFromFileString = (fileString, fileName) => {
+
+}
