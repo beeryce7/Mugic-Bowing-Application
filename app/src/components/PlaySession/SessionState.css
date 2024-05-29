@@ -17,3 +17,68 @@
     margin-left: 20px;
     margin-right: 20px;
 }
+
+
+
+.new-graph {
+    display: flex;
+    margin:  100px;
+    font-size: 100px;
+    justify-content: center;
+    align-items: center; 
+    font-weight: var(--main-font-weight);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+
+.new-logo {
+    display: flex;
+    margin: 0 20px;
+    font-size: 28px;
+    justify-content: center;
+    align-items: center; 
+    font-weight: var(--main-font-weight);
+    margin-left: 29.5px;
+}
+
+
+.new-recenter
+{
+    display: flex;
+    margin: 0 20px;
+    justify-content: center;
+    align-items: center; 
+    margin-bottom: 9px;
+}
+
+.offset-left
+{
+    margin-right: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+
+.offset-right
+{
+    margin-left: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.lower-box{
+    border-radius: 20px;
+    border-width: 2px;
+    border-style: solid;
+    margin-top: 20px;
+    width: 250px;
+}
+
+.move-left
+{
+    margin-right: 350px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.vertical-line {
+    width: 2px; /* Adjust the width of the line */
+    height: 7vh; /* Height of the line, set to full viewport height */
+    background-color: black; /* Color of the line */
+}
