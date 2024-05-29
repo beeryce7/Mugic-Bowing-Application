@@ -2,13 +2,13 @@ import React from 'react';
 import './SessionState.css'; // Import your CSS file for styling
 import { Link } from "react-router-dom";
 import BasicMenu from './BasicMenu';
-import { selectFileName } from '../../slices/loadedDataSlice';
 import { useSelector } from 'react-redux';
+import { selectFileName } from '../../slices/loadedDataSlice';
 
 
 const Header = () => {
 
-  const selectFileName = useSelector((state) => state.loadedData.fileName)
+  const fileName = useSelector(selectFileName)
 
   return (
     <div className="new-header">
@@ -16,7 +16,7 @@ const Header = () => {
         <div className="new-logo"><Link to="/">μ</Link></div>
         <BasicMenu/>
       </div>
-      <div> {selectFileName}</div>
+      <div> {fileName}</div>
       <div className="new-recenter"><div className="nav-item"><Link to="/settings">Settings</Link> </div></div>
     </div>
   );

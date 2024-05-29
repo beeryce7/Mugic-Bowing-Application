@@ -62,14 +62,15 @@ const loadedDataSlice = createSlice({
 
     },
     selectors: {
-        selectFileName: (state) => state.fileName
+        selectFileName: (state) => state.fileName,
+        selectTeacherData: (state) => state.teacherData,
+        selectStudentData: (state) => state.studentData,
     }
 })
 export default loadedDataSlice.reducer
 
 
 export const { loadRecording } = loadedDataSlice.actions
-//export const { selectFileName } = loadedDataSlice.getSelectors((state) => state.loadedData)
-//console.log(selectFileName)
+export const { selectFileName, selectStudentData, selectTeacherData } = loadedDataSlice.selectors
 
 

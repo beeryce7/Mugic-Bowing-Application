@@ -52,7 +52,7 @@ export const mugicDataSlice = createAppSlice({
   }),
 
   selectors: {
-    selectData: (state) => state.data
+    selectMugicData: (state) => state.data
   }
 })
 
@@ -60,6 +60,6 @@ export const mugicDataSlice = createAppSlice({
 export const { updateMugicData, retrieveMugicData } = mugicDataSlice.actions
 
 
-export const { selectData } = mugicDataSlice.selectors
+export const { selectMugicData } = mugicDataSlice.selectors
 
 export default mugicDataSlice.reducer

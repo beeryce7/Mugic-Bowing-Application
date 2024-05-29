@@ -4,6 +4,7 @@ import { Stage, Layer, Line, Circle } from "react-konva";
 import { Spring, animated } from "@react-spring/konva";
 import { duration } from "@mui/material";
 import { useSelector } from 'react-redux';
+import { selectMugicData } from "../../slices/mugicDataSlice";
 
 
 const Visualizer = () => {
@@ -18,7 +19,7 @@ const Visualizer = () => {
     const lineLifetime = 10;
     const lineLength = 20;
 
-    const mugicData = useSelector((state) => state.mugicData.data);
+    const mugicData = useSelector(selectMugicData);
 
 
     //update dot whenever mugicData is changed
