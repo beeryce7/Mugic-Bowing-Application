@@ -4,6 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import recordingDataSlice from '../../slices/recordingDataSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { buildTeacherFile } from '../../utils/format';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -23,20 +24,12 @@ export default function BasicMenu() {
     
     console.log("data:" + recordingData.toString())
     console.log("hi")
-    window.electronAPI.saveFile(buildRecordingFile(recordingData, recordingStartTime));
+    window.electronAPI.saveFile(buildTeacherFile(recordingData, recordingStartTime));
     handleClose();
   }
-  const buildRecordingFile = (recordingData, recordingStartTime) => {
-    var str = ""
 
-    str += recordingStartTime.toString() + "\n"
-    str += "Teacher"
-    str += recordingData.length.toString()
-
-    recordingData.forEach(element => {
-      str += element.toString() + "\n"
-    })
-    return str
+   const handleLoad = async () => {
+    const {message, fileName} = await window.electronAPI.loadFile();
   }
 
   return (
@@ -61,8 +54,10 @@ export default function BasicMenu() {
       >
         <MenuItem onClick={handleClose}>Save</MenuItem>
         <MenuItem onClick={handleSave}>Save As</MenuItem>
+        <MenuItem onClick={handleLoad}>Load File</MenuItem>
         <MenuItem onClick={handleClose}>Return to Home</MenuItem>
         <MenuItem onClick={handleClose}>Quit Mugic</MenuItem>
+        
       </Menu>
     </div>
   );

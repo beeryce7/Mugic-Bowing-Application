@@ -1,34 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { quaternionToEuler } from "./mugicDataSlice";
 
-function extractDataFromFileString(fileString){
-
-    const lines = fileString.split('\n');
-    const date = lines[0] ;
-    const hasStudentData = lines[1];
-    const totalLines = lines[2];
-    const teacherData = []
-    const studentData = []
-
-    if(hasStudentData == "Teacher"){
-        for(let i = 3; i < 3+totalLines; ++i){
-            const line = lines[i].split(',');
-            teacherData.push(line)
-        }
-    }
-
-    else { //case: teacher and student data
-
-    }
-    return {
-        date: date,
-        hasStudentData: hasStudentData,
-        studentData: studentData,
-        teacherData: teacherData,
-    }
-
-    
-}
 
 const loadedDataSlice = createSlice({
     name: 'loadedData',
@@ -44,15 +16,49 @@ const loadedDataSlice = createSlice({
     },
 
     reducers: {
-        loadRecording: (state, action) => {
-            state.teacherData = action.payload.teacher;
-            state.studentData = action.payload.student;
-            state.fileName = action.payload.file;
-            state.hasStudentData = action.payload.hasStudentData
+        loadRecording: {
+            reducer: (state, action) => {
+                state.teacherData = action.payload.teacher;
+                state.studentData = action.payload.student;
+                state.fileName = action.payload.file;
+                state.dateCreated = action.payload.date;
+                state.hasStudentData = action.payload.hasStudentData;
+            },
+            prepare: (fileName, fileString) => { //parses fileName and fileString
+                
+                const lines = fileString.split('\n');
+                
+                const date = lines[0] ;
+                const hasStudentData = lines[1];
+                const totalLines = lines[2];
+                const teacherData = []
+                const studentData = []
+
+                if(hasStudentData == "Teacher"){
+                    for(let i = 3; i < 3+totalLines; ++i){
+                        const line = lines[i].split(',');
+                        teacherData.push(line)
+                    }
+                }
+
+                else { //case: teacher and student data
+
+                }
+                const payload = {
+                    date: date,
+                    hasStudentData: hasStudentData,
+                    student: studentData,
+                    teacher: teacherData,
+                    fileName: fileName
+                }
+                console.log(payload)
+                return payload
+            }
         },
+
     },
 })
 
-export const { loadRecording } = recordingDataSlice.actions
+export const { loadRecording } = loadedDataSlice.actions
 export default loadedDataSlice.reducer
 
