@@ -34,9 +34,15 @@ const recordingDataSlice = createSlice({
                 state.data.push([data.yaw, data.pitch, data.roll]);
             }
         })
+    },
+    selectors: {
+        selectRecordingData: (state) => state.data,
+        selectRecordingStartTime: (state) => state.recordingStartTime,
+        selectIsRecording: (state) => state.isRecording,
     }
 })
 
-export const { clearRecording, addRecordingPointIfRecording, startRecording, stopRecording } = recordingDataSlice.actions
+export const { clearRecording, startRecording, stopRecording } = recordingDataSlice.actions
+export const { selectRecordingData, selectRecordingStartTime, selectIsRecording } = recordingDataSlice.selectors
 export default recordingDataSlice.reducer
 
