@@ -62,6 +62,17 @@ const loadedDataSlice = createSlice({
 
     },
     selectors: {
+        selectLoadedType: (state) => {
+            if(state.teacherData.length == 0){
+                return "None"
+            }
+            else if(state.hasStudentData){
+                return "Student"
+            }
+            else{
+                return "Teacher"
+            }
+        },
         selectFileName: (state) => state.fileName,
         selectTeacherData: (state) => state.teacherData,
         selectStudentData: (state) => state.studentData,
@@ -71,6 +82,6 @@ export default loadedDataSlice.reducer
 
 
 export const { loadRecording } = loadedDataSlice.actions
-export const { selectFileName, selectStudentData, selectTeacherData } = loadedDataSlice.selectors
+export const { selectFileName, selectStudentData, selectTeacherData, selectLoadedType } = loadedDataSlice.selectors
 
 

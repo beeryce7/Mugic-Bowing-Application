@@ -2,8 +2,8 @@ import * as React from 'react';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { selectRecordingData, selectRecordingStartTime } from '../../slices/recordingDataSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { buildTeacherFile } from '../../utils/format';
-import { loadRecording } from '../../slices/loadedDataSlice';
+import { buildTeacherFile, buildTeacherStudentFile } from '../../utils/format';
+import { loadRecording, selectLoadedType, selectTeacherData } from '../../slices/loadedDataSlice';
 import { Snackbar, Menu, MenuItem, Button } from '@mui/material';
 
 export default function BasicMenu() {
@@ -19,6 +19,8 @@ export default function BasicMenu() {
 
   const recordingData = useSelector(selectRecordingData)
   const recordingStartTime = useSelector(selectRecordingStartTime)
+  const loadedType = useSelector(selectLoadedType)
+  const teacherData = useSelector(selectTeacherData)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -28,9 +30,19 @@ export default function BasicMenu() {
   };
 
   const handleSave = () => {
+    let fileString = ""
+
+    console.log("saving file")
     
-    console.log("data:" + recordingData.toString())
-    window.electronAPI.saveFile(buildTeacherFile(recordingData, recordingStartTime));
+    if(loadedType == "None"){
+      fileString = buildTeacherFile(recordingData, recordingStartTime);
+    }
+    else{ // student data contained in recording slice
+      fileString = buildTeacherStudentFile(teacherData, recordingData, recordingStartTime)
+    }
+    window.electronAPI.saveFile(fileString)
+
+    
     handleClose();
   }
 
