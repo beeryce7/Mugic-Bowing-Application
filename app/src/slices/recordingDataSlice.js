@@ -39,10 +39,11 @@ const recordingDataSlice = createSlice({
         selectRecordingData: (state) => state.data,
         selectRecordingStartTime: (state) => state.recordingStartTime,
         selectIsRecording: (state) => state.isRecording,
+        selectRecordingTimer: (state) => (Math.round(state.data.length * 5)/100).toFixed(2)
     }
 })
 
 export const { clearRecording, startRecording, stopRecording } = recordingDataSlice.actions
-export const { selectRecordingData, selectRecordingStartTime, selectIsRecording } = recordingDataSlice.selectors
+export const { selectRecordingData, selectRecordingStartTime, selectIsRecording, selectRecordingTimer } = recordingDataSlice.selectors
 export default recordingDataSlice.reducer
 

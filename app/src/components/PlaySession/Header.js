@@ -10,6 +10,7 @@ const Header = () => {
 
   const fileName = useSelector(selectFileName)
 
+
   return (
     <div className="new-header">
       <div className="nav-items">
@@ -17,6 +18,8 @@ const Header = () => {
         <BasicMenu/>
       </div>
       <div> {fileName}</div>
+      
+
       <div className="new-recenter"><div className="nav-item"><Link to="/settings">Settings</Link> </div></div>
     </div>
   );
