@@ -2,14 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { retrieveMugicData } from "./mugicDataSlice";
 import { quaternionToEuler } from "./mugicDataSlice";
 
-export const beginCountdown = createAsyncThunk(
-    'recordingData/beginCountdown',
-    async(_, {dispatch}) => {
-
-    }
-)
-
-
 const recordingDataSlice = createSlice({
     name: 'recordingData',
 
@@ -42,9 +34,15 @@ const recordingDataSlice = createSlice({
                 state.data.push([data.yaw, data.pitch, data.roll]);
             }
         })
+    },
+    selectors: {
+        selectRecordingData: (state) => state.data,
+        selectRecordingStartTime: (state) => state.recordingStartTime,
+        selectIsRecording: (state) => state.isRecording,
     }
 })
 
-export const { clearRecording, addRecordingPointIfRecording, startRecording, stopRecording } = recordingDataSlice.actions
+export const { clearRecording, startRecording, stopRecording } = recordingDataSlice.actions
+export const { selectRecordingData, selectRecordingStartTime, selectIsRecording } = recordingDataSlice.selectors
 export default recordingDataSlice.reducer
 

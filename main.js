@@ -210,13 +210,15 @@ async function handleLoadFile (event, data) {
     
     return {
       cancelled: false,
-      message: text
+      message: text,
+      fileName: fileInfo.filePaths[0]
     }
   }
   else{
     return {
       cancelled: true,
       message: "",
+      fileName: "",
     }
   }
 }

@@ -4,6 +4,8 @@ import { Stage, Layer, Line, Circle } from "react-konva";
 import { Spring, animated } from "@react-spring/konva";
 import { duration } from "@mui/material";
 import { useSelector } from 'react-redux';
+import { selectMugicData } from "../../slices/mugicDataSlice";
+import { selectTeacherData } from "../../slices/loadedDataSlice";
 
 
 const Visualizer = () => {
@@ -18,7 +20,11 @@ const Visualizer = () => {
     const lineLifetime = 10;
     const lineLength = 20;
 
-    const mugicData = useSelector((state) => state.mugicData.data);
+    const mugicData = useSelector(selectMugicData);
+
+    //this is an array of [[yaw1,pitch1,roll1], [yaw2,pitch2,roll2] ... ] that was loaded from file
+    //use to play back teacher data
+    const loadedData = useSelector(selectTeacherData);
 
 
     //update dot whenever mugicData is changed

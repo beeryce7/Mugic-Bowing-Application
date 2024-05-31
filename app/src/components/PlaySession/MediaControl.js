@@ -4,14 +4,14 @@ import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import StopOutlinedIcon from '@mui/icons-material/StopOutlined';
 import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined';
 
-import { startRecording, stopRecording } from '../../slices/recordingDataSlice'
+import { selectIsRecording, selectRecordingStartTime, startRecording, stopRecording } from '../../slices/recordingDataSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
 const MediaControl = () => {
 
     const dispatch = useDispatch()
-    const isRecording = useSelector((state) => state.recordingData.isRecording)
-    const recordingStartTime = useSelector((state) => state.recordingData.recordingStartTime)
+    const isRecording = useSelector(selectIsRecording)
+    const recordingStartTime = useSelector(selectRecordingStartTime)
 
     const [secondsElapsed, setSecondsElapsed] = useState(0)
 

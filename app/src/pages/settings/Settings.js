@@ -3,12 +3,12 @@ import './Settings.css';
 import Header from '../../components/home/Header';
 import { Grid, Container, Switch } from '@mui/material';
 import InfoContainer from '../../components/settings/InfoContainer';
-
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { selectMugicData } from '../../slices/mugicDataSlice';
 
 const Settings = () => {
 
-  const mugicData = useSelector((state) => state.mugicData.data);
+  const mugicData = useSelector(selectMugicData);
 
   return (
     <div>
