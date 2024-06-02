@@ -1,16 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Visualizer.css"
-import { Stage, Layer, Line, Circle } from "react-konva";
+import { Stage, Layer, Line, Circle, Rect } from "react-konva";
 import { Spring, animated } from "@react-spring/konva";
 import { duration } from "@mui/material";
 import { useSelector } from 'react-redux';
 import { selectMugicData } from "../../slices/mugicDataSlice";
 import { selectTeacherData } from "../../slices/loadedDataSlice";
+import useWindowDimensions from "../../utils/useWindowDimensions";
 
 
 const Visualizer = () => {
-    const width = 500;
-    const height = 500;
+    const { height, width } = useWindowDimensions();
+
+    const chartHeight = height / 2;
+    const chartWidth = width /2;
+
     const minYaw = 0;
     const maxYaw = 360;
     const minRoll = -180;
@@ -59,8 +63,8 @@ const Visualizer = () => {
 
     const updateDot = () => {
         updateDotData({
-            x: ((mugicData.roll - minRoll) / (maxRoll - minRoll)) * width,
-            y: ((mugicData.yaw - minYaw) / (maxYaw - minYaw)) * height,
+            x: ((mugicData.roll - minRoll) / (maxRoll - minRoll)) * chartWidth,
+            y: ((mugicData.yaw - minYaw) / (maxYaw - minYaw)) * chartHeight,
         })
         addLinePoint(dotData.x, dotData.y);
         if (circleRef.current != null) {
@@ -85,15 +89,23 @@ const Visualizer = () => {
     return (
         <div>
             {/* <MugicTracker mugicData={mugicData} updateData={updateData}/> */}
-            <Stage width={width} height={height}>
+            <Stage width={chartWidth} height={chartHeight}>
 
                 <Layer>
                     <Circle
                         ref={circleRef}
-                        x={width / 2}
-                        y={height / 2}
+                        x={chartWidth / 2}
+                        y={chartHeight / 2}
                         radius={10}
                         fill="blue"
+                    />
+                    <Rect
+                        x={0}
+                        y={0}
+                        width={chartWidth}
+                        height={chartHeight}
+                        stroke="black"
+                        strokeWidth={2}
                     />
                     <Line
                         ref={lineRef}

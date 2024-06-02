@@ -4,6 +4,7 @@ import Header from '../../components/PlaySession/Header';
 import SessionState from '../../components/PlaySession/SessionState';
 //import DividerStack from '../../components/PlaySession/DividerStack';
 import Visualizer from '../../components/visualizer/Visualizer';
+import LoadedDataVisual from '../../components/visualizer/LoadedDataVisual';
 
 
 const PlaySession = () => {
@@ -15,8 +16,10 @@ const PlaySession = () => {
         <div className="be-on-right">00:00:00</div>
 
         <div className="new-graph">
+            <LoadedDataVisual/> 
             <Visualizer/>
         </div>
+ 
 
         <SessionState/>
         <div className="offset-right">

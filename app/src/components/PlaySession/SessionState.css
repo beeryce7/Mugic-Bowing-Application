@@ -22,12 +22,6 @@
 
 .new-graph {
     display: flex;
-    margin:  100px;
-    font-size: 100px;
-    justify-content: center;
-    align-items: center; 
-    font-weight: var(--main-font-weight);
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 

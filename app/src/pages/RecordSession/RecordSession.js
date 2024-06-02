@@ -3,6 +3,7 @@ import './RecordSession.css';
 import Header from '../../components/PlaySession/Header';
 import SessionState from '../../components/PlaySession/SessionState';
 import { Button, Grid, Snackbar } from '@mui/material';
+import Visualizer from '../../components/visualizer/Visualizer';
 
 const RecordSession = () => {
   return (
@@ -26,7 +27,9 @@ const RecordSession = () => {
   </Grid>
     
     
-    <div className="new-graph">GRAPH</div>
+    <div className="new-graph">
+      <Visualizer/>
+    </div>
 
     <SessionState/>
 
