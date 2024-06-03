@@ -6,14 +6,18 @@ const createAppSlice = buildCreateSlice({
 })
 
 export function quaternionToEuler(q0, q1, q2, q3){
-  let yr = -Math.atan(-2 * q1 * q2 + 2 * q0 * q3, q2 * q2 - q3 * q3 - q1 * q1 + q0 * q0);
+  // turn right is positive
+  let yr = Math.atan2(2 * q1 * q2 + 2 * q0 * q3, q2 * q2 - q3 * q3 - q1 * q1 + q0 * q0);
+  // lift up left positive
   let pr = Math.asin(2 * q2 * q3 + 2 * q0 * q1);
-  let rr = Math.atan2(-2 * q1 * q3 + 2 * q0 * q2, q3 * q3 - q2 * q2 - q1 * q1 + q0 * q0);
+  // lift top is positive
+  let rr = -Math.atan2(-2 * q1 * q3 + 2 * q0 * q2, q3 * q3 - q2 * q2 - q1 * q1 + q0 * q0);
+  rr = rr < 0 ? rr + Math.PI : rr - Math.PI;
 
   return {
     yaw: Math.round(yr * 180 / Math.PI),
-    pitch: Math.round(pr * 180 / Math.PI),
-    roll: Math.round(rr * 180 / Math.PI),
+    pitch: Math.round(rr * 180 / Math.PI),
+    roll: Math.round(pr * 180 / Math.PI),
   }
 }
 
@@ -44,10 +48,28 @@ export const mugicDataSlice = createAppSlice({
       fulfilled: (state, action) => {
         const msg = action.payload
         const eulerData = quaternionToEuler(msg[13], msg[14], msg[15], msg[16])
-        state.data = eulerData
-        state.battery = quaternionToEuler(msg[17])
+
+        const calibratedYaw = (eulerData.yaw - state.calibration.yawOffset + 360) % 360;
+        const calibratedPitch = (eulerData.pitch - state.calibration.pitchOffset + 360) % 360;
+        const calibratedRoll = (eulerData.roll - state.calibration.rollOffset + 360) % 360;
+
+        state.data = {
+          yaw: calibratedYaw > 180 ? calibratedYaw - 360 : calibratedYaw,
+          pitch: calibratedPitch > 180 ? calibratedPitch - 360 : calibratedPitch,
+          roll: calibratedRoll > 180 ? calibratedRoll - 360 : calibratedRoll,
+        };
+
+        // state.data = eulerData
+        state.battery = msg[17]
         
       }
+    }),
+    calibrateDevice: create.reducer((state) => {
+      state.calibration = {
+        yawOffset: state.data.yaw,
+        pitchOffset: state.data.pitch,
+        rollOffset: state.data.roll,
+      };
     }),
   }),
 
@@ -57,7 +79,7 @@ export const mugicDataSlice = createAppSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { updateMugicData, retrieveMugicData } = mugicDataSlice.actions
+export const { updateMugicData, retrieveMugicData, calibrateDevice } = mugicDataSlice.actions
 
 
 export const { selectMugicData } = mugicDataSlice.selectors
