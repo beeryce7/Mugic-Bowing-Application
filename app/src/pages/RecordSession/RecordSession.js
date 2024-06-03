@@ -28,7 +28,9 @@ const RecordSession = () => {
     
     
     <div className="new-graph">
-      <Visualizer/>
+      <Visualizer 
+        isRecordPage={true}
+      />
     </div>
 
     <SessionState/>
