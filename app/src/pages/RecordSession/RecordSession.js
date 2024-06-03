@@ -12,8 +12,8 @@ const RecordSession = () => {
     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
     <Grid item xs={6}>
       <div>
-        <Button variant="outlined">Save</Button>
-        <Button variant="outlined">Save As</Button>
+        <Button variant="outlined">Save as...</Button>
+        <Button variant="outlined">Redo</Button>
       </div>
       
      

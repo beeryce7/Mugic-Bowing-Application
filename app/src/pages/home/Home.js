@@ -8,18 +8,17 @@ const Home = () => {
     <div>
       <Header/>
       
-      <h1 className="banner">
-        Welcome to MμGIC!
-      </h1>
+      <div className="banner">
+        Welcome to MUGIC<sup>&reg;</sup>!
+      </div>
 
-      <h2 className="text_style">
-        Start a new!
-      </h2>
+      <div className="text_style">
+        Start a new session!
+      </div>
 
       <div className="container">
         <CustomButton text="Record" />
-        <CustomButton text="Import" />
-        <CustomButton text="Add Device" />
+        <CustomButton text="Play Along" />
       </div>
 
       <h2 className="text_style">

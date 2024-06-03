@@ -13,12 +13,11 @@ const Header = () => {
   return (
     <div className="new-header">
       <div className="nav-items">
-        <div className="new-logo"><Link to="/">μ</Link></div>
-        <BasicMenu/>
+        <div className="new-logo"><Link to="/">MUGIC</Link></div>
       </div>
       <div> {fileName}</div>
-      <div className="new-recenter"><div className="nav-item"><Link to="/settings">Settings</Link> </div></div>
-    </div>
+      <div className="nav-items"><div className="nav-item"><Link to="/settings">Settings</Link> </div>
+    </div></div>
   );
 };
 
