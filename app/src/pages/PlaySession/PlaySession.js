@@ -10,8 +10,8 @@ const PlaySession = () => {
   return (
     <div>
         <Header/>
-        <div className="top-graph"><div className="key"><div class="color-block-teacher"></div>Teacher</div></div>
-        <div className="top-graph"><div className="key"><div class="color-block-student"></div>Student</div></div>
+        <div className="top-graph"><div className="key"><div class="color-block-teacher"></div><div className="change-font">Teacher</div></div></div>
+        <div className="top-graph"><div className="key"><div class="color-block-student"></div><div className="change-font">Student</div></div></div>
         <div className="be-on-right">00:00:00</div>
 
         <div className="new-graph">
@@ -22,6 +22,7 @@ const PlaySession = () => {
         <div className="offset-right">
             <div className="lower-box"> <h1>Stats</h1>
                 <li> Accuracy</li>
+                <li>Angle</li>
             </div>
         </div>
     </div> 

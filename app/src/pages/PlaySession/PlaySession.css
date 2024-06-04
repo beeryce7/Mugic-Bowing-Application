@@ -46,7 +46,7 @@
 
 .be-on-right
 {
-    font-family: var(--main-font);
+    font-family: 'Josefin Sans', sans-serif;
     float: right;
     display: flex;
     margin: 0 20px;
@@ -54,4 +54,9 @@
     margin-top: 16px;
     justify-content: center;
     align-items: center; 
+}
+
+.change-font
+{
+    font-family: 'Josefin Sans', sans-serif;
 }
