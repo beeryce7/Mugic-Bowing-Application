@@ -10,22 +10,27 @@
   
 .logo {
     margin: 0 20px;
-    font-size: 28px;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
     font-weight: var(--main-font-weight);
+    margin-left: 30px;
 }
 
 .nav-items {
     display: flex;
+    font-size: 40px;
+    margin: 0 20px;
+    justify-content: center;
+    align-items: center; 
+    font-weight: var(--main-font-weight);
+    margin-left: 30px;
 }
 
 .nav-item {
     margin: 0 30px;
     margin-top: 12px;
-    cursor: pointer;
-    font-family: 'Josefin Sans', sans-serif;
-}
-
-.professor {
     cursor: pointer;
     font-family: 'Josefin Sans', sans-serif;
 }
@@ -50,16 +55,5 @@ a:active {
 text-decoration: underline;
 }
 
-
-
-.new-header {
-    display: flex;
-    align-items: center;
-    padding: 0.5px;
-    justify-content: space-between;
-    
-    background-color: var(--main-header-color);
-    color: var(--main-text-color-invert);
-}
 
 
