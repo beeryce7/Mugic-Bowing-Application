@@ -30,14 +30,10 @@
 
 .be-on-right
 {
+    font-size: var(--card-text-size);
+    font-weight: var(--main-font-weight);
     font-family: var(--main-font);
-    float: right;
-    display: flex;
-    margin: 0 20px;
-    margin-right: 40px;
-    margin-top: 16px;
-    justify-content: center;
-    align-items: center; 
+    margin-left: auto; /* Pushes the element to the far right */
 }
 
 .text-for-button {
@@ -48,8 +44,20 @@
 
 .new-button-container {
     display: flex;
-    /* grid-template-columns: repeat(n, 1fr); */
-    grid-template-columns: repeat(auto-fit, minmax(100px));
-    gap: 24px;
     padding: 18px;
+    gap: 10px;
+    height: 40px;
 }
+
+.color-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* ensure text is centered */
+    font-size: var(--card-text-size);
+    font-weight: var(--main-font-weight);
+    font-family: var(--main-font);
+    height: 56px; /* consistent height */
+    width: 500px;
+}
+

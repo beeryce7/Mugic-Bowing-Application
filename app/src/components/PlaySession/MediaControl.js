@@ -50,8 +50,8 @@ const MediaControl = () => {
             <PlayArrowOutlinedIcon
                 onClick={handlePlay}
                 sx={{
-                    width: 1/4,
-                    height: 50,
+                    width: 110,
+                    height: 110,
                     cursor: 'pointer',
                     p: 3/4,
                 }}
@@ -60,8 +60,8 @@ const MediaControl = () => {
             <RadioButtonCheckedOutlinedIcon
                 onClick={handleRecord}
                 sx={{
-                    width: 1/5,
-                    height: 50,
+                    width: 100,
+                    height: 100,
                     cursor: 'pointer',
                     p: 3/4,
                 }}
@@ -70,8 +70,8 @@ const MediaControl = () => {
             <StopOutlinedIcon
                 onClick={handleStop}
                 sx={{
-                    width: 1/4,
-                    height: 50,
+                    width: 150,
+                    height: 150,
                     cursor: 'pointer',
                     p: 3/4, 
                 }}
