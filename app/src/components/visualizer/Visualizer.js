@@ -36,10 +36,12 @@ const Visualizer = ({isRecordPage = false}) => {
 
     //update dot whenever mugicData is changed
     useEffect(() => {
+        // useEffect is called based on the changing state of mugicData
         const newPoint = {
             x: ((mugicData.roll - minRoll) / (maxRoll - minRoll)) * chartWidth,
             y: ((mugicData.yaw - minYaw) / (maxYaw - minYaw)) * chartHeight,
         };
+        // setLineData is simular to accumulate, reused Aaron's variable
         setLineData((prevData) => [...prevData, newPoint.x, newPoint.y]);
     }, [mugicData])
 
@@ -49,6 +51,7 @@ const Visualizer = ({isRecordPage = false}) => {
             <Stage width={chartWidth} height={chartHeight}>
                 <Layer>
                     <Rect
+                        // the black outline box for the graph 
                         x={0}
                         y={0}
                         width={chartWidth}
@@ -57,12 +60,15 @@ const Visualizer = ({isRecordPage = false}) => {
                         strokeWidth={2}
                     />
                     {!isRecordPage && loadedData.length > 0 &&  (
+                        // if there is loadedData and it is playSession we show the loaded visual
                         <LoadedDataVisual
                             chartHeight={chartHeight}
                             chartWidth={chartWidth}
                         />
                     )}
                     <Line
+                        // since lineData is accumulated by useEffect the dataset grows so this would reflect that
+                        // other variables are for styling
                         points={lineData}
                         stroke="#FF7A00"
                         strokeWidth={5}
