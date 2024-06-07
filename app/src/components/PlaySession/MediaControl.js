@@ -26,7 +26,7 @@ const MediaControl = () => {
     };
 
     const handleStop = () => {
-        dispatch(stopRecording())
+        dispatch(stopRecording(), {payload:false})
 
         /*clearInterval(interval)
         interval = 0

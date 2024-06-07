@@ -21,7 +21,8 @@ const recordingDataSlice = createSlice({
             state.recordingStartTime = Date.now()
             state.data = []
         },
-        stopRecording: (state) => {
+        stopRecording: (state, action) => {
+
             state.isRecording = false
         }
     },
