@@ -1,7 +1,9 @@
-.container {
-    justify-content: center; 
-    align-items: center; 
-
+.container-button {
+    display: grid;
+    /* grid-template-columns: repeat(n, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 24px;
+    padding: 18px;
 }
 
 .container_DEFAULT {

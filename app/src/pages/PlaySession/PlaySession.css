@@ -1,19 +1,3 @@
-.banner{
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    margin-top: 0px;
-
-    background-color: var(--main-background-color);
-    color: var(--main-text-color-invert);
-    font-family: var(--main-font);
-
-    margin-bottom: 20px;
-    font-size: 48px;
-    height: 150px;
-    font-weight: var(--main-font-weight);
-}
-
 .top-graph {
     margin: 0 100px;
     margin-top: 10px;
@@ -27,6 +11,7 @@
     display: flex;
     align-items: center;
     margin: 5px 0;
+    font-weight: var(--main-font-weight);
 }
 
 .color-block-teacher {

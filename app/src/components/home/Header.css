@@ -10,18 +10,16 @@
   
 .logo {
     margin: 0 20px;
-    font-size: 40px;
+    font-size: var(--header-text-size);
     display: flex;
     justify-content: center;
     align-items: center; 
     font-weight: var(--main-font-weight);
-    margin-left: 30px;
 }
 
 .nav-items {
     display: flex;
-    font-size: 40px;
-    margin: 0 20px;
+    font-size: var(--header-text-size);
     justify-content: center;
     align-items: center; 
     font-weight: var(--main-font-weight);
@@ -32,7 +30,7 @@
     margin: 0 30px;
     margin-top: 12px;
     cursor: pointer;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: var(--main-font);
 }
 
 a{

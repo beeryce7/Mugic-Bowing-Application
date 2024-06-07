@@ -32,13 +32,12 @@
 
 
 .new-logo {
-    display: flex;
     margin: 0 20px;
-    font-size: 40px;
+    font-size: var(--header-text-size);
+    display: flex;
     justify-content: center;
     align-items: center; 
     font-weight: var(--main-font-weight);
-    margin-left: 29.5px;
 }
 
 .offset-left
