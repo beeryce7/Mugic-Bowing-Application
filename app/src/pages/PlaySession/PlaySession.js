@@ -28,11 +28,6 @@ const PlaySession = () => {
         </div>
 
         <SessionState/>
-        <div className="offset-right">
-            <div className="lower-box"> <h1>Stats</h1>
-                <li> Accuracy</li>
-            </div>
-        </div>
     </div> 
   );
 };
