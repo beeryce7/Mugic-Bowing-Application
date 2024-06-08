@@ -70,8 +70,8 @@ const MediaControl = () => {
             <StopOutlinedIcon
                 onClick={handleStop}
                 sx={{
-                    width: 150,
-                    height: 150,
+                    width: 110,
+                    height: 110,
                     cursor: 'pointer',
                     p: 3/4, 
                 }}

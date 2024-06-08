@@ -44,18 +44,20 @@
 {
     margin-right: 20px;
     font-family: 'Josefin Sans', sans-serif;
-}
-
-.offset-left {
     justify-content: center;
     align-items: center;
+    font-size: var(--card-text-size);
+    font-weight: var(--main-font-weight);
+    font-family: var(--main-font);
 }
 
 
 .offset-right
 {
     margin-left: 20px;
-    font-family: 'Josefin Sans', sans-serif;
+    font-size: var(--default-text-size);
+    font-weight: var(--main-font-weight);
+    font-family: var(--main-font);
 }
 
 .lower-box{

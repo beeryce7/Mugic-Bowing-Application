@@ -2,6 +2,7 @@ import React from 'react';
 import './PlaySession.css'; 
 import Header from '../../components/PlaySession/Header';
 import SessionState from '../../components/PlaySession/SessionState';
+import { Button, Grid, Snackbar } from '@mui/material';
 //import DividerStack from '../../components/PlaySession/DividerStack';
 import Visualizer from '../../components/visualizer/Visualizer';
 
@@ -10,9 +11,17 @@ const PlaySession = () => {
   return (
     <div>
         <Header/>
-        <div className="top-graph"><div className="key"><div class="color-block-teacher"></div>Teacher</div></div>
+        
+        <div className = "new-button-container">
+        <Button variant="contained" className = "color-button"><div className = "text-for-button">Save as...</div></Button>
+        <Button variant="contained" className = "color-button"><div className = "text-for-button">Clear</div></Button>
+        <Button variant="contained" className = "color-button"><div className = "text-for-button">Redo</div></Button>
+        <div className="be-on-right">00:00</div>
+      </div>
+
+        {/* <div className="top-graph"><div className="key"><div class="color-block-teacher"></div>Teacher</div></div>
         <div className="top-graph"><div className="key"><div class="color-block-student"></div>Student</div></div>
-        <div className="be-on-right">00:00:00</div>
+        <div className="be-on-right">00:00:00</div> */}
 
         <div className="new-graph">
             <Visualizer/>

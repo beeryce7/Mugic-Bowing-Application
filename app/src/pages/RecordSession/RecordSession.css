@@ -54,10 +54,8 @@
     align-items: center;
     justify-content: center;
     text-align: center; /* ensure text is centered */
-    font-size: var(--card-text-size);
-    font-weight: var(--main-font-weight);
-    font-family: var(--main-font);
     height: 56px; /* consistent height */
     width: 500px;
+    background-color: 'green',
 }
 

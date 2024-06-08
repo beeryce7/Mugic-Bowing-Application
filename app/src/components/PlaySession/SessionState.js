@@ -12,9 +12,10 @@ const SessionState = () => {
           <MediaControl/>
         </div>
         
-        <div className="offset">Count down: <span><TextField id="outlined-basic" label="Set Countdown" variant="outlined" /></span></div>
+        <div>Count down: <span><TextField id="outlined-basic" label="Set Countdown" variant="outlined" /></span></div>
         <div> Metronome: <TextField id="outlined-basic" label="set Metronome" variant="outlined" /></div>
       </div>
+      <div className="offset-right">Start</div>
       
 
     </div>
