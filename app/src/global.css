@@ -5,10 +5,10 @@
     --main-background-color: #599CFF;
 
     --card-background-color: #C5E4E8;
-    --card-text-size: 64px;
-    --title-text-size: 96px;
-    --header-text-size: 32px;
-    --default-text-size: 48px;
+    --card-text-size: 5vw;
+    --title-text-size: 9vw;
+    --header-text-size: 2.6vw;
+    --default-text-size: 2.6vw;
 
     --main-text-color: black;
     --main-text-color-invert: white;

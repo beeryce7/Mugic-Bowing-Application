@@ -39,4 +39,5 @@
     margin-top: 16px;
     justify-content: center;
     align-items: center; 
+    font-size: var(--default-text-size)
 }

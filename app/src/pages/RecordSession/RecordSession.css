@@ -30,7 +30,7 @@
 
 .be-on-right
 {
-    font-size: var(--card-text-size);
+    font-size: var(--default-text-size);
     font-weight: var(--main-font-weight);
     font-family: var(--main-font);
     margin-left: auto; /* Pushes the element to the far right */

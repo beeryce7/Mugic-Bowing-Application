@@ -10,14 +10,8 @@ const RecordSession = () => {
   return (
     <div>
     <Header/>
-
-      <div className = "new-button-container">
-        <Button variant="contained" className = "color-button"><div className = "text-for-button">Save as...</div></Button>
-        <Button variant="contained" className = "color-button"><div className = "text-for-button">Clear</div></Button>
-        <Button variant="contained" className = "color-button"><div className = "text-for-button">Redo</div></Button>
-        <div className="be-on-right">00:00</div>
-      </div>
-    
+      <div className="be-on-right">00:00</div>
+      
       <div className="new-graph">
             <Visualizer/>
         </div>
