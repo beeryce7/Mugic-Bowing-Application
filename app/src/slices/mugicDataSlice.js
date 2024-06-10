@@ -89,12 +89,14 @@ export const mugicDataSlice = createAppSlice({
 
   selectors: {
     selectMugicData: (state) => state.data,
+    selectBattery: (state) => state.battery,
+    selectIsConnected: (state) => state.battery > 1
   }
 })
 
 // Action creators are generated for each case reducer function
 export const { updateMugicData, retrieveMugicData, calibrateDevice } = mugicDataSlice.actions
 
-export const { selectMugicData } = mugicDataSlice.selectors
+export const { selectMugicData, selectBattery, selectIsConnected } = mugicDataSlice.selectors
 
 export default mugicDataSlice.reducer

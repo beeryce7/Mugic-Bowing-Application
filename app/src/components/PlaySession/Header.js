@@ -7,17 +7,13 @@ import { selectFileName } from '../../slices/loadedDataSlice';
 
 
 const Header = () => {
-
+  
   const fileName = useSelector(selectFileName)
-
   return (
     <div className="new-header">
-      <div className="nav-items">
-        <div className="new-logo"><Link to="/">μ</Link></div>
-        <BasicMenu/>
-      </div>
-      <div> {fileName}</div>
-      <div className="new-recenter"><div className="nav-item"><Link to="/settings">Settings</Link> </div></div>
+      <div className="nav-items"><div className="nav-item"><Link to="/"> &#60; Back to Home</Link></div></div>
+      <div className="nav-items"><div className="nav-item-cursor">{fileName}</div></div>
+      <div className="nav-items"><div className="nav-item"><Link to="/settings">Settings</Link> </div></div>
     </div>
   );
 };
