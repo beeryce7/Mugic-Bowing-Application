@@ -105,7 +105,7 @@ const MediaControl = () => {
                     }}
                 />
                 <Typography variant="subtitle1" >
-                    REDO
+                    SAVE
                 </Typography>
             </Box>
         </>
