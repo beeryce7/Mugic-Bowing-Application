@@ -8,7 +8,10 @@ const recordingDataSlice = createSlice({
     initialState:{
         data: [],
         isRecording: false,
-        countdown: 3,
+        countdown: {
+            isCountingDown: false,
+            timer: 3,
+        },
         recordingStartTime: Date.now(),
     },
 
@@ -39,10 +42,11 @@ const recordingDataSlice = createSlice({
         selectRecordingData: (state) => state.data,
         selectRecordingStartTime: (state) => state.recordingStartTime,
         selectIsRecording: (state) => state.isRecording,
+        selectCountdown: (state) => state.countdown
     }
 })
 
 export const { clearRecording, startRecording, stopRecording } = recordingDataSlice.actions
-export const { selectRecordingData, selectRecordingStartTime, selectIsRecording } = recordingDataSlice.selectors
+export const { selectRecordingData, selectRecordingStartTime, selectIsRecording, selectCountdown } = recordingDataSlice.selectors
 export default recordingDataSlice.reducer
 

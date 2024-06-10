@@ -6,6 +6,7 @@ import { duration } from "@mui/material";
 import { useSelector } from 'react-redux';
 import { selectMugicData } from "../../slices/mugicDataSlice";
 import { selectTeacherData } from "../../slices/loadedDataSlice";
+import Countdown from "./Countdown";
 
 
 const Visualizer = () => {
@@ -88,6 +89,7 @@ const Visualizer = () => {
             <Stage width={width} height={height}>
 
                 <Layer>
+                    
                     <Circle
                         ref={circleRef}
                         x={width / 2}
