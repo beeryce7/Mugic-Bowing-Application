@@ -1,5 +1,5 @@
 
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import './MediaControl.css';
 
 import StopOutlinedIcon from '@mui/icons-material/StopOutlined';
@@ -8,7 +8,7 @@ import ReplayIcon from '@mui/icons-material/Replay';
 import SaveIcon from '@mui/icons-material/Save';
 import { Box, Typography } from '@mui/material';
 
-import { selectIsRecording, selectRecordingStartTime, startCountdown, startRecording, stopRecording, selectCountdown} from '../../slices/recordingDataSlice'
+import { selectIsRecording, selectRecordingStartTime, startCountdown, stopRecording, selectCountdown} from '../../slices/recordingDataSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
 const MediaControl = () => {
@@ -32,15 +32,10 @@ const MediaControl = () => {
 
     const handleStop = () => {
         dispatch(stopRecording())
-
     };
 
     const handleRecord = () => {
-        dispatch(startRecording())
-        
-        /*
-        interval = setInterval(() => updateTimeElapsed(), 1000)
-        */
+        dispatch(startCountdown())
     };
 
     const handleSave = () => {
