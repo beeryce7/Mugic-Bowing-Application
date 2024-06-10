@@ -36,10 +36,7 @@ const SessionState = () => {
             />
           </span>
         </div>
-
-        <div> Metronome: 
-          <TextField id="outlined-basic" label="set Metronome" variant="outlined" />
-        </div>
+        
       </div>
       
     </div>
