@@ -33,6 +33,11 @@ export const mugicDataSlice = createAppSlice({
     },
     battery: 0,
     seqNum: 0,
+    calibration: {
+      yawOffset: 0,
+      pitchOffset: 0,
+      rollOffset: 0,
+    },
   },
 
   reducers: (create) => ({
@@ -49,38 +54,46 @@ export const mugicDataSlice = createAppSlice({
         const msg = action.payload
         const eulerData = quaternionToEuler(msg[13], msg[14], msg[15], msg[16])
 
-        const calibratedYaw = (eulerData.yaw - state.calibration.yawOffset + 360) % 360;
-        const calibratedPitch = (eulerData.pitch - state.calibration.pitchOffset + 360) % 360;
-        const calibratedRoll = (eulerData.roll - state.calibration.rollOffset + 360) % 360;
-
-        state.data = {
-          yaw: calibratedYaw > 180 ? calibratedYaw - 360 : calibratedYaw,
-          pitch: calibratedPitch > 180 ? calibratedPitch - 360 : calibratedPitch,
-          roll: calibratedRoll > 180 ? calibratedRoll - 360 : calibratedRoll,
-        };
-
-        // state.data = eulerData
+        if(state.calibration){
+          const calibratedYaw = (eulerData.yaw - state.calibration.yawOffset + 360) % 360;
+          const calibratedPitch = (eulerData.pitch - state.calibration.pitchOffset + 360) % 360;
+          const calibratedRoll = (eulerData.roll - state.calibration.rollOffset + 360) % 360;
+  
+          state.data = {
+            yaw: calibratedYaw > 180 ? calibratedYaw - 360 : calibratedYaw,
+            pitch: calibratedPitch > 180 ? calibratedPitch - 360 : calibratedPitch,
+            roll: calibratedRoll > 180 ? calibratedRoll - 360 : calibratedRoll,
+          };
+        }else{
+          state.data = eulerData
+        }
+  
         state.battery = msg[17]
         
       }
     }),
-    calibrateDevice: create.reducer((state) => {
-      state.calibration = {
-        yawOffset: state.data.yaw,
-        pitchOffset: state.data.pitch,
-        rollOffset: state.data.roll,
+    calibrateDevice: create.asyncThunk(async () => {
+      const msg = await window.electronAPI.retrieveMugicData();
+      const eulerData = quaternionToEuler(msg[13], msg[14], msg[15], msg[16]);
+      return {
+        yawOffset: eulerData.yaw,
+        pitchOffset: eulerData.pitch,
+        rollOffset: eulerData.roll,
       };
+    }, {
+      fulfilled: (state, action) => {
+        state.calibration = action.payload;
+      },
     }),
   }),
 
   selectors: {
-    selectMugicData: (state) => state.data
+    selectMugicData: (state) => state.data,
   }
 })
 
 // Action creators are generated for each case reducer function
 export const { updateMugicData, retrieveMugicData, calibrateDevice } = mugicDataSlice.actions
-
 
 export const { selectMugicData } = mugicDataSlice.selectors
 
