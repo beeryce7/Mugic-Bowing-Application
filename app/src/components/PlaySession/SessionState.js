@@ -11,9 +11,6 @@ const SessionState = () => {
         <div className="media-items">
           <MediaControl/>
         </div>
-        <div className="text-container">
-          Count down 3 secs
-        </div>
       </div>
       
     </div>

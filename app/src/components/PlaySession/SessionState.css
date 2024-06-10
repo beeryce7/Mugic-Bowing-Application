@@ -1,7 +1,6 @@
 .media {
     display: flex;
     align-items: center; 
-    padding: 10px;
     justify-content: space-between;
 
 
@@ -9,6 +8,13 @@
 
 .media-items {
     display: flex;
+}
+
+
+.nav-item-cursor {
+    margin: 0 30px;
+    margin-top: 12px;
+    font-family: var(--main-font);
 }
 
 .box{
