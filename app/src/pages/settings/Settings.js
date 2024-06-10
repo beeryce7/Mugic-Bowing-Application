@@ -5,6 +5,7 @@ import { Grid, Container, Switch } from '@mui/material';
 import InfoContainer from '../../components/settings/InfoContainer';
 import { useSelector } from 'react-redux';
 import { selectMugicData } from '../../slices/mugicDataSlice';
+import MeasurementGauge from '../../components/settings/MeasurementGauge';
 
 const Settings = () => {
 
@@ -19,7 +20,10 @@ const Settings = () => {
       <Grid container spacing={2}>
         <Grid item xs={6}>
          <InfoContainer title="Yaw">
-          {mugicData.yaw}
+          <MeasurementGauge
+            value={mugicData.yaw}
+          />
+          
          </InfoContainer>
         </Grid>
         <Grid item xs={6}>
