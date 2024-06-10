@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { retrieveMugicData } from "./mugicDataSlice";
 import { quaternionToEuler } from "./mugicDataSlice";
 
@@ -8,7 +8,11 @@ const recordingDataSlice = createSlice({
     initialState:{
         data: [],
         isRecording: false,
-        countdown: 3,
+        countdown: {
+            isCountingDown: false,
+            timer: 3,
+            maxTimer: 3,
+        },
         recordingStartTime: Date.now(),
     },
 
@@ -23,6 +27,31 @@ const recordingDataSlice = createSlice({
         },
         stopRecording: (state) => {
             state.isRecording = false
+            state.countdown.isCountingDown = false;
+        },
+        startCountdown: (state) => {
+            state.countdown.isCountingDown = true;
+            state.countdown.timer = state.countdown.maxTimer
+        },
+        tickCountdown: (state) => {
+            if(state.countdown.isCountingDown){             
+                if(state.countdown.timer <= 0){
+                    state.countdown.isCountingDown = false
+                    
+                    //starts recording
+                    console.log("Recording Started")
+                    state.isRecording = true
+                    state.recordingStartTime = Date.now()
+                    state.data = []
+                }
+                else{
+                    state.countdown.timer -= 1;
+                }
+            }
+        },
+
+        setCountdownSecs: (state, action) => {
+            state.countdown.maxTimer = action.payload
         }
     },
 
@@ -39,10 +68,11 @@ const recordingDataSlice = createSlice({
         selectRecordingData: (state) => state.data,
         selectRecordingStartTime: (state) => state.recordingStartTime,
         selectIsRecording: (state) => state.isRecording,
+        selectCountdown: (state) => state.countdown
     }
 })
 
-export const { clearRecording, startRecording, stopRecording } = recordingDataSlice.actions
-export const { selectRecordingData, selectRecordingStartTime, selectIsRecording } = recordingDataSlice.selectors
+export const { clearRecording, startRecording, stopRecording, startCountdown, tickCountdown, setCountdownSecs } = recordingDataSlice.actions
+export const { selectRecordingData, selectRecordingStartTime, selectIsRecording, selectCountdown } = recordingDataSlice.selectors
 export default recordingDataSlice.reducer
 
