@@ -1,8 +1,4 @@
-.container {
-    justify-content: center; 
-    align-items: center; 
 
-}
 
 .container_DEFAULT {
     background: var(--card-background-color);

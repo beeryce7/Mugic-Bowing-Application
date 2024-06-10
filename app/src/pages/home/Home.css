@@ -10,7 +10,7 @@
     font-family: var(--main-font);
     font-weight: var(--main-font-weight);
     padding-left: 20px;
-    font-size: 22px;
+    font-size: var(--default-text-size);
     padding-bottom: 0px;
     margin-bottom: 0px;
 }
@@ -26,7 +26,7 @@
     font-family: var(--main-font);
 
     margin-bottom: 20px;
-    font-size: 48px;
-    height: 150px;
+    font-size: var(--title-text-size);
+    height: 200px;
     font-weight: var(--main-font-weight);
 }

@@ -1,7 +1,9 @@
 .media {
     display: flex;
-    justify-content: space-between;
     align-items: center; 
+    padding: 10px;
+    justify-content: space-between;
+
 
 }
 
@@ -13,11 +15,15 @@
     border-radius: 20px;
     border-width: 2px;
     border-style: solid;
-
+    
     margin-left: 20px;
     margin-right: 20px;
 }
 
+.text-container{
+    font-size: var(--card-text-size);
+    margin-right: 10%;
+}
 
 
 .new-graph {
@@ -32,36 +38,32 @@
 
 
 .new-logo {
-    display: flex;
     margin: 0 20px;
-    font-size: 28px;
+    font-size: var(--header-text-size);
+    display: flex;
     justify-content: center;
     align-items: center; 
     font-weight: var(--main-font-weight);
-    margin-left: 29.5px;
-}
-
-
-.new-recenter
-{
-    display: flex;
-    margin: 0 20px;
-    justify-content: center;
-    align-items: center; 
-    margin-bottom: 9px;
 }
 
 .offset-left
 {
     margin-right: 20px;
     font-family: 'Josefin Sans', sans-serif;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--card-text-size);
+    font-weight: var(--main-font-weight);
+    font-family: var(--main-font);
 }
 
 
 .offset-right
 {
     margin-left: 20px;
-    font-family: 'Josefin Sans', sans-serif;
+    font-size: var(--default-text-size);
+    font-weight: var(--main-font-weight);
+    font-family: var(--main-font);
 }
 
 .lower-box{
@@ -81,4 +83,14 @@
     width: 2px; /* Adjust the width of the line */
     height: 7vh; /* Height of the line, set to full viewport height */
     background-color: black; /* Color of the line */
+}
+
+.new-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    
+    background-color: var(--main-header-color);
+    color: var(--main-text-color-invert);
 }

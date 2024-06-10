@@ -2,34 +2,34 @@ import React from 'react';
 import CustomButton from '../../components/CustomButton';
 import './Home.css'; 
 import Header from '../../components/home/Header';
-import { useNavigate } from 'react-router-dom'  
-
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+  
   return (
+
     <div>
       <Header/>
       
-      <h1 className="banner">
-        Welcome to MμGIC!
-      </h1>
-
-      <h2 className="text_style">
-        Start a new!
-      </h2>
-
-      <div className="container">
-        <CustomButton text="Record" onClick={() => navigate("/record")} />
-        <CustomButton text="Import" />
-        <CustomButton text="Add Device" />
+      <div className="banner">
+        Welcome to MUGIC<sup>&reg;</sup>!
       </div>
 
-      <h2 className="text_style">
+      <div className="text_style">
+        Start a new session!
+      </div>
+
+      <div className="container">
+        <CustomButton text="Record" onClick={() => navigate("/record")}/>
+        <CustomButton text="Play Along" onClick={() => navigate("/play")}/>
+      </div>
+
+      <div className="text_style">
         Recent Files
-      </h2>
-    </div>
+      </div>
+    </div> 
   );
 };
 
