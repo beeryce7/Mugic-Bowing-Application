@@ -85,11 +85,13 @@ const Visualizer = () => {
 
     return (
         <div>
-            {/* <MugicTracker mugicData={mugicData} updateData={updateData}/> */}
             <Stage width={width} height={height}>
 
                 <Layer>
-                    
+                    <Countdown
+                        x={width / 2}
+                        y={height / 2}
+                    />
                     <Circle
                         ref={circleRef}
                         x={width / 2}
