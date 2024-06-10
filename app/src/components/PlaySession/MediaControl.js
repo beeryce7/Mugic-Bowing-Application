@@ -8,14 +8,15 @@ import ReplayIcon from '@mui/icons-material/Replay';
 import SaveIcon from '@mui/icons-material/Save';
 import { Box, Typography } from '@mui/material';
 
-import { startRecording, stopRecording } from '../../slices/recordingDataSlice'
+import { selectIsRecording, selectRecordingStartTime, startCountdown, startRecording, stopRecording, selectCountdown} from '../../slices/recordingDataSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
 const MediaControl = () => {
 
     const dispatch = useDispatch()
-    const isRecording = useSelector((state) => state.recordingData.isRecording)
-    const recordingStartTime = useSelector((state) => state.recordingData.recordingStartTime)
+    const isRecording = useSelector(selectIsRecording)
+    const recordingStartTime = useSelector(selectRecordingStartTime)
+    const countdown = useSelector(selectCountdown)
 
     const [secondsElapsed, setSecondsElapsed] = useState(0)
 
@@ -31,11 +32,6 @@ const MediaControl = () => {
 
     const handleStop = () => {
         dispatch(stopRecording())
-
-        /*clearInterval(interval)
-        interval = 0
-        setSecondsElapsed(0)
-        */
 
     };
 
@@ -60,7 +56,7 @@ const MediaControl = () => {
 
     return (
         <>
-            {!isRecording ? (
+            {!isRecording && (!countdown.isCountingDown) ? (
                 <Box className="icon-container">
                     <RadioButtonCheckedOutlinedIcon
                         onClick={handleRecord}

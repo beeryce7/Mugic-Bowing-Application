@@ -1,17 +1,26 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import recordingDataSlice from '../../slices/recordingDataSlice';
+import { selectRecordingData, selectRecordingStartTime } from '../../slices/recordingDataSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { buildTeacherFile, buildTeacherStudentFile } from '../../utils/format';
+import { loadRecording, selectLoadedType, selectTeacherData } from '../../slices/loadedDataSlice';
+import { Snackbar, Menu, MenuItem, Button } from '@mui/material';
 
 export default function BasicMenu() {
+
+  const dispatch = useDispatch()
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const recordingData = useSelector((state) => state.recordingData.data)
-  const recordingStartTime = useSelector((state) => state.recordingData.recordingStartTime)
+  const [loadSnackbarOpen, setLoadSnackbarOpen] = React.useState(false)
+
+  
+
+  const recordingData = useSelector(selectRecordingData)
+  const recordingStartTime = useSelector(selectRecordingStartTime)
+  const loadedType = useSelector(selectLoadedType)
+  const teacherData = useSelector(selectTeacherData)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,19 +30,29 @@ export default function BasicMenu() {
   };
 
   const handleSave = () => {
+    let fileString = ""
+
+    console.log("saving file")
     
-    console.log("data:" + recordingData.toString())
-    console.log("hi")
-    window.electronAPI.saveFile(buildRecordingFile(recordingData, recordingStartTime));
+    if(loadedType == "None"){
+      fileString = buildTeacherFile(recordingData, recordingStartTime);
+    }
+    else{ // student data contained in recording slice
+      fileString = buildTeacherStudentFile(teacherData, recordingData, recordingStartTime)
+    }
+    window.electronAPI.saveFile(fileString)
+
+    
     handleClose();
   }
-  const buildRecordingFile = (recordingData, recordingStartTime) => {
-    var str = ""
-    str += recordingStartTime.toString() + "\n"
-    recordingData.forEach(element => {
-      str += element.toString() + "\n"
-    })
-    return str
+
+   const handleLoad = async () => {
+    const {fileName, message, cancelled} = await window.electronAPI.loadFile();
+    if(!cancelled){
+      dispatch(loadRecording(fileName, message))
+      setLoadSnackbarOpen(true)
+    }
+
   }
 
   return (
@@ -56,11 +75,20 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Save</MenuItem>
-        <MenuItem onClick={handleSave}>Save As</MenuItem>
+        <MenuItem onClick={handleSave}>Save File</MenuItem>
+        <MenuItem onClick={handleLoad}>Load File</MenuItem>
         <MenuItem onClick={handleClose}>Return to Home</MenuItem>
         <MenuItem onClick={handleClose}>Quit Mugic</MenuItem>
+        
       </Menu>
+
+      <Snackbar
+        open={loadSnackbarOpen}
+        message="File Loaded!"
+        autoHideDuration={2000}
+        onClose={()=>setLoadSnackbarOpen(false)}
+      />
+
     </div>
   );
 }
