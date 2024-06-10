@@ -11,13 +11,11 @@ const SessionState = () => {
         <div className="media-items">
           <MediaControl/>
         </div>
-        
-        <div>Count down: <span><TextField id="outlined-basic" label="Set Countdown" variant="outlined" /></span></div>
-        <div> Metronome: <TextField id="outlined-basic" label="set Metronome" variant="outlined" /></div>
+        <div className="text-container">
+          Count down 3 secs
+        </div>
       </div>
-      <div className="offset-right">Start Rec</div>
       
-
     </div>
   );
 };
