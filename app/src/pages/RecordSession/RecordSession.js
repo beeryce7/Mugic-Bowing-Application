@@ -14,10 +14,6 @@ const RecordSession = () => {
   return (
     <div>
     <Header/>
-      <div className="be-on-right">00:00</div>
-      
-     
-    </Grid>
 
     <Grid item xs={6}> 
       <div className="be-on-right">
@@ -25,7 +21,7 @@ const RecordSession = () => {
       </div>
     </Grid>
     
-  </Grid>
+  
     
     
     <Visualizer/>

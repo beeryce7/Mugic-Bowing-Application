@@ -14,11 +14,15 @@ const Header = () => {
         <div className="logo"><Link to="/">μ</Link></div>
         <div className="nav-item"><Link to="/record">Record</Link></div>
         <div className="nav-item"><Link to="/play">Play Along</Link></div>
+        
       </div>
-      <div>
-        Battery: {battery}
+
+      <div className="nav-items">
+        <div className="nav-item">
+          Battery: {battery}
+        </div>
+        <div className="nav-item"><Link to="/settings">Settings</Link></div>
       </div>
-      <div className="nav-items"><div className="nav-item"><Link to="/settings">Settings</Link></div></div>
     </div>
   );
 };
