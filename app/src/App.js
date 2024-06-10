@@ -7,12 +7,13 @@ import { HashRouter, Routes, Route } from "react-router-dom"
 import { useDispatch } from 'react-redux';
 import { retrieveMugicData } from './slices/mugicDataSlice.js';
 
-function App() {
+export const POLL_RATE = 50;
 
-  const POLL_RATE_MS = 50
+
+function App() {
   const dispatch = useDispatch()
 
-  const interval = setInterval(() => dispatch(retrieveMugicData()), POLL_RATE_MS)
+  const interval = setInterval(() => dispatch(retrieveMugicData()), POLL_RATE)
 
   return (
     <HashRouter>

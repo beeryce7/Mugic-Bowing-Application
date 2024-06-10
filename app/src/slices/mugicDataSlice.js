@@ -45,14 +45,16 @@ export const mugicDataSlice = createAppSlice({
         const msg = action.payload
         const eulerData = quaternionToEuler(msg[13], msg[14], msg[15], msg[16])
         state.data = eulerData
-        state.battery = quaternionToEuler(msg[17])
+        state.battery = msg[17]
         
       }
     }),
   }),
 
   selectors: {
-    selectMugicData: (state) => state.data
+    selectMugicData: (state) => state.data,
+    selectBattery: (state) => state.battery,
+    selectIsConnected: (state) => state.battery > 1
   }
 })
 
@@ -60,6 +62,6 @@ export const mugicDataSlice = createAppSlice({
 export const { updateMugicData, retrieveMugicData } = mugicDataSlice.actions
 
 
-export const { selectMugicData } = mugicDataSlice.selectors
+export const { selectMugicData, selectBattery, selectIsConnected } = mugicDataSlice.selectors
 
 export default mugicDataSlice.reducer

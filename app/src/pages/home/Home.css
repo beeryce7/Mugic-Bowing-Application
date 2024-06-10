@@ -6,8 +6,9 @@
     padding: 18px;
 }
 
+
 .text_style{
-    font-family: var(--main-font);
+    font-family:  var(--main-font);
     font-weight: var(--main-font-weight);
     padding-left: 20px;
     font-size: var(--default-text-size);
