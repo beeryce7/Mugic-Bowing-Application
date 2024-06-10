@@ -42,7 +42,6 @@ const SessionState = () => {
         </div>
       </div>
       
-
     </div>
   );
 };
