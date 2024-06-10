@@ -1,7 +1,15 @@
 /* https://medium.com/@toshvelaga/using-global-css-variables-in-react-js-216f03fcdc56 */
 
+.josefin-sans-DefaultFont {
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: bold;
+  }
+
 :root{
-    --main-font: 'Josefin Sans';
+    --main-font: .josefin-sans-DefaultFont;
+
     --main-background-color: #599CFF;
 
     --card-background-color: #C5E4E8;
