@@ -4,7 +4,7 @@ import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import StopOutlinedIcon from '@mui/icons-material/StopOutlined';
 import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined';
 
-import { selectIsRecording, selectRecordingStartTime, startRecording, stopRecording } from '../../slices/recordingDataSlice'
+import { selectIsRecording, selectRecordingStartTime, startCountdown, startRecording, stopRecording, selectCountdown} from '../../slices/recordingDataSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
 const MediaControl = () => {
@@ -12,6 +12,7 @@ const MediaControl = () => {
     const dispatch = useDispatch()
     const isRecording = useSelector(selectIsRecording)
     const recordingStartTime = useSelector(selectRecordingStartTime)
+    const countdown = useSelector(selectCountdown)
 
     const [secondsElapsed, setSecondsElapsed] = useState(0)
 
@@ -27,21 +28,11 @@ const MediaControl = () => {
 
     const handleStop = () => {
         dispatch(stopRecording())
-
-        /*clearInterval(interval)
-        interval = 0
-        setSecondsElapsed(0)
-        */
-
         console.log("stop")
     };
 
     const handleRecord = () => {
-        dispatch(startRecording())
-        
-        /*
-        interval = setInterval(() => updateTimeElapsed(), 1000)
-        */
+        dispatch(startCountdown())
         console.log("record")
     };
 
@@ -56,7 +47,7 @@ const MediaControl = () => {
                     p: 3/4,
                 }}
             />
-            {!isRecording ? (
+            {!isRecording && (!countdown.isCountingDown) ? (
             <RadioButtonCheckedOutlinedIcon
                 onClick={handleRecord}
                 sx={{
