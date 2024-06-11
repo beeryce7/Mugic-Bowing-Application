@@ -14,11 +14,11 @@ import Countdown from "./Countdown";
 const Visualizer = ({isRecordPage = false}) => {
     const { height, width } = useWindowDimensions();
 
-    const chartHeight = height;
+    const chartHeight = height * 0.7;
     const chartWidth = width ;
 
-    const minYaw = 0;
-    const maxYaw = 360;
+    const minYaw = -180;
+    const maxYaw = 180;
     const minRoll = -180;
     const maxRoll = 180;
     const yawOffset = 0;
@@ -44,16 +44,18 @@ const Visualizer = ({isRecordPage = false}) => {
         };
         // setLineData is simular to accumulate, reused Aaron's variable
         setLineData((prevData) => [...prevData, newPoint.x, newPoint.y]);
+
+        //console.log(chartHeight, chartWidth, mugicData.yaw)
     }, [mugicData])
 
     return (
         <div>
-            <Stage width={width} height={height}>
+            <Stage width={chartWidth} height={chartHeight}>
 
                 <Layer>
                     <Countdown
-                        x={width / 2}
-                        y={height / 2}
+                        x={chartWidth / 2}
+                        y={chartHeight / 2}
                     />
                     {!isRecordPage && loadedData.length > 0 &&  (
                         // if there is loadedData and it is playSession we show the loaded visual
