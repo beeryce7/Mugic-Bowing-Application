@@ -8,6 +8,7 @@ import { selectMugicData } from "../../slices/mugicDataSlice";
 import { selectTeacherData } from "../../slices/loadedDataSlice";
 import useWindowDimensions from "../../utils/useWindowDimensions";
 import LoadedDataVisual from "./LoadedDataVisual";
+import Countdown from "./Countdown";
 
 
 const Visualizer = ({isRecordPage = false}) => {
@@ -47,11 +48,22 @@ const Visualizer = ({isRecordPage = false}) => {
 
     return (
         <div>
-            {/* <MugicTracker mugicData={mugicData} updateData={updateData}/> */}
-            <Stage width={chartWidth} height={chartHeight}>
+            <Stage width={width} height={height}>
+
                 <Layer>
-                    <Rect
-                        // the black outline box for the graph 
+                    <Countdown
+                        x={width / 2}
+                        y={height / 2}
+                    />
+                    <Circle
+                        ref={circleRef}
+                        x={width / 2}
+                        y={height / 2}
+                        radius={10}
+                        fill="blue"
+                    />
+                    <Line
+                        ref={lineRef}
                         x={0}
                         y={0}
                         width={chartWidth}

@@ -8,3 +8,9 @@
 .outer{
     padding: 10;
 }
+
+.text-style{
+    font-size: var(--default-text-size);
+    font-family: var(--main-font);
+    font-weight: var(--main-font-weight);
+}
