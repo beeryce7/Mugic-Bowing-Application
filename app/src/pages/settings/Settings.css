@@ -19,3 +19,8 @@
     display: flex;
     background-color: slategray;
 }
+
+.plane{
+    max-height: 70%;
+    width: 70%;
+}
