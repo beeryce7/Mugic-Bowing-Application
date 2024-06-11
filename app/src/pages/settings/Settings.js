@@ -43,7 +43,7 @@ const Settings = () => {
          {mugicData.roll}
          </InfoContainer>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6}> 
          <InfoContainer title="Calibration" fill={false}>
             <Button variant="contained" onClick={handleCalibration}>
               Calibrate
