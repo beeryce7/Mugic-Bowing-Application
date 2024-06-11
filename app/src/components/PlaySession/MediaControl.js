@@ -9,7 +9,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import { Box, Typography, Snackbar } from '@mui/material';
 import { buildTeacherFile, buildTeacherStudentFile } from '../../utils/format';
 import { loadRecording, selectLoadedType, selectTeacherData} from '../../slices/loadedDataSlice';
-import { selectIsRecording, selectRecordingStartTime, startCountdown, stopRecording, selectCountdown, selectRecordingData } from '../../slices/recordingDataSlice'
+import { selectIsRecording, selectRecordingStartTime, startCountdown, stopRecording, selectCountdown, selectRecordingData, clearRecording, } from '../../slices/recordingDataSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
 const MediaControl = () => {
@@ -32,7 +32,7 @@ const MediaControl = () => {
     }
 
     const handleRedo= () => {
-        console.log("redo")
+        dispatch(clearRecording())
     };
 
     const handleStop = () => {
