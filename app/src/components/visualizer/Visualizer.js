@@ -9,10 +9,10 @@ import { selectTeacherData } from "../../slices/loadedDataSlice";
 import useWindowDimensions from "../../utils/useWindowDimensions";
 import LoadedDataVisual from "./LoadedDataVisual";
 import Countdown from "./Countdown";
-import { selectRecordingData } from "../../slices/recordingDataSlice";
+import { selectRecordingData, selectIsRecording, selectCountdown } from "../../slices/recordingDataSlice";
 
 
-const Visualizer = ({isRecordPage = false, clearLineData}) => {
+const Visualizer = ({isRecordPage = false}) => {
     const { height, width } = useWindowDimensions();
 
     const chartHeight = height * 0.7;
@@ -33,6 +33,8 @@ const Visualizer = ({isRecordPage = false, clearLineData}) => {
     //use to play back teacher data
     const loadedData = useSelector(selectTeacherData);
     const recordingData = useSelector(selectRecordingData)
+    const isRecording = useSelector(selectIsRecording)
+    const countdown = useSelector(selectCountdown)
 
     // Points in lineData will be in the format [x1, y1, x2, y2, x3, y3]
     const[lineData, setLineData] = useState([]);
@@ -44,14 +46,28 @@ const Visualizer = ({isRecordPage = false, clearLineData}) => {
             x: ((mugicData.roll - minRoll) / (maxRoll - minRoll)) * chartWidth,
             y: ((mugicData.yaw - minYaw) / (maxYaw - minYaw)) * chartHeight,
         };
-        // setLineData is simular to accumulate, reused Aaron's variable
-        setLineData((prevData) => [...prevData, newPoint.x, newPoint.y]);
-        
+
+        //only draw lines if 1. not recording and data is empty and countdown is false, B while recording
+        if((!isRecording && !countdown.isCountingDown && recordingData.length == 0) || (isRecording && !countdown.isCountingDown)){
+
+            // setLineData is simular to accumulate, reused Aaron's variable
+            setLineData((prevData) => [...prevData, newPoint.x, newPoint.y]);
+        }
 
         //console.log(chartHeight, chartWidth, mugicData.yaw)
     }, [mugicData])
 
-    
+    useEffect(()=> {
+        console.log(recordingData)
+        if(recordingData.length == 0){
+            console.log("check")
+            handleClearLine()
+        }
+    }, [recordingData])
+
+    const handleClearLine = () => {
+        setLineData([])
+    }
 
 
     return (
@@ -62,6 +78,7 @@ const Visualizer = ({isRecordPage = false, clearLineData}) => {
                     <Countdown
                         x={chartWidth / 2}
                         y={chartHeight / 2}
+                        clearLine={handleClearLine}
                     />
                     {!isRecordPage && loadedData.length > 0 &&  (
                         // if there is loadedData and it is playSession we show the loaded visual
