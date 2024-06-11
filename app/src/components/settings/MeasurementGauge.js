@@ -2,7 +2,7 @@ import GaugeComponent from "react-gauge-component"
 
 const MeasurementGauge = ({value, measurement}) => {
 
-    if(measurement!="pitch"){
+    if(measurement!="roll"){
         return(
         <GaugeComponent
             //value={value != null ? value : 0}
