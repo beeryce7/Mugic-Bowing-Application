@@ -6,6 +6,7 @@ import InfoContainer from '../../components/settings/InfoContainer';
 import { useSelector } from 'react-redux';
 import { selectMugicData } from '../../slices/mugicDataSlice';
 import MeasurementGauge from '../../components/settings/MeasurementGauge';
+
 const Settings = () => {
 
   const mugicData = useSelector(selectMugicData);
@@ -16,7 +17,7 @@ const Settings = () => {
       <h1 className="banner">
         Settings - Calibration
       </h1>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} columns={12}>
         <Grid item xs={6}>
          <InfoContainer title="Yaw">
           <MeasurementGauge
@@ -24,29 +25,13 @@ const Settings = () => {
             measurement={'yaw'}
           />
          </InfoContainer>
-        </Grid>
-
-        <Grid item xs={6}>
-          <InfoContainer title= "What are these values?">
-            Yaw, Pitch and Roll represent how you move your MUGIC device across the 3D plane.
-            <img className= "plane"src={'https://upload.wikimedia.org/wikipedia/commons/7/7e/Rollpitchyawplain.png'}></img>
-            <li> <b>Yaw </b>is the rotation from left to right as your device lays flat.</li>
-            <li> <b>Pitch</b> is the rotation from up to down.</li>
-            <li> <b>Roll</b> is the rotation of the whole device as if you are doing a barrel roll on a plane! </li>
-          </InfoContainer>
-        </Grid>
-
-        <Grid item xs={6}>
          <InfoContainer title="Pitch">
           <MeasurementGauge
             value = {mugicData.pitch}
             measurement={'pitch'}
           />
          </InfoContainer>
-        </Grid>
-        <Grid item xs={6}>
-        </Grid>
-        <Grid item xs={6}>
+
          <InfoContainer title="Roll">
          <MeasurementGauge
             value = {mugicData.roll}
@@ -54,6 +39,23 @@ const Settings = () => {
           />
          </InfoContainer>
         </Grid>
+
+        
+        <Grid item xs={6}>
+        
+          <InfoContainer title= "What are these values?">
+            Yaw, Pitch and Roll represent how you move your MUGIC device across the 3D plane.
+            <img className= "plane"src={'https://upload.wikimedia.org/wikipedia/commons/7/7e/Rollpitchyawplain.png'}></img>
+            <li> <b>Yaw </b>is the rotation from left to right as your device lays flat.</li>
+            <li> <b>Pitch</b> is the rotation from up to down.</li>
+            <li> <b>Roll</b> is the rotation of the whole device as if you are doing a barrel roll on a plane! </li>
+          </InfoContainer>
+ 
+        </Grid>
+        
+        
+        
+
       </Grid>
     </div> 
   );

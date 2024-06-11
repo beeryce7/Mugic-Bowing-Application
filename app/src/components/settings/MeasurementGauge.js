@@ -9,7 +9,7 @@ const MeasurementGauge = ({value, measurement}) => {
             type="semicircle"
             value={value}
             arc={{colorArray:['#009EFF'], nbSubArcs:1}}
-            style={{width:"45%"}}
+            style={{width:"50%"}}
             labels={{hide:true}}
             minValue={-180}
             maxValue={180}  
@@ -23,7 +23,7 @@ const MeasurementGauge = ({value, measurement}) => {
             type="semicircle"
             value={value}
             arc={{colorArray:['#009EFF'], nbSubArcs:1}}
-            style={{width:"45%"}}
+            style={{width:"50%"}}
             labels={{hide:true}}
             minValue={0}
             maxValue={90}  
