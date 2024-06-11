@@ -12,7 +12,7 @@ import Countdown from "./Countdown";
 import { selectRecordingData, selectIsRecording, selectCountdown } from "../../slices/recordingDataSlice";
 
 
-const Visualizer = ({isRecordPage = false, clearLineData}) => {
+const Visualizer = ({isRecordPage = false}) => {
     const { height, width } = useWindowDimensions();
 
     const chartHeight = height * 0.7;
@@ -56,6 +56,14 @@ const Visualizer = ({isRecordPage = false, clearLineData}) => {
 
         //console.log(chartHeight, chartWidth, mugicData.yaw)
     }, [mugicData])
+
+    useEffect(()=> {
+        console.log(recordingData)
+        if(recordingData.length == 0){
+            console.log("check")
+            handleClearLine()
+        }
+    }, [recordingData])
 
     const handleClearLine = () => {
         setLineData([])

@@ -15,9 +15,9 @@ const Countdown = ({x, y, clearLine}) => {
         let cdIntervalId
 
         if(countdown.isCountingDown){
+            clearLine()
             cdIntervalId = setInterval(() => {
                 dispatch(tickCountdown())
-                clearLine()
             }, 1000)
         }
 
