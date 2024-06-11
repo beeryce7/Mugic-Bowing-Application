@@ -26,9 +26,6 @@ const Home = () => {
         <CustomButton text="Play Along" onClick={() => navigate("/play")}/>
       </div>
 
-      <div className="text_style">
-        Recent Files
-      </div>
     </div> 
   );
 };
