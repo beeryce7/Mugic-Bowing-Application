@@ -10,8 +10,8 @@ const LoadedDataVisual = ({ chartHeight, chartWidth }) => {
 
     const minYaw = -180;
     const maxYaw = 180;
-    const minRoll = -180;
-    const maxRoll = 180;
+    const minRoll = -90;
+    const maxRoll = 90;
 
     const points = loadedData.reduce((acc, [yaw, pitch, roll]) => {
         // purpose is to gather calculated graph points from loadedData 
