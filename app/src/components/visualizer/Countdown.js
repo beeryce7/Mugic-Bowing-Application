@@ -6,7 +6,7 @@ import { tickCountdown } from "../../slices/recordingDataSlice";
 import { useDispatch } from "react-redux";
 
 
-const Countdown = ({x, y}) => {
+const Countdown = ({x, y, clearLine}) => {
 
     const countdown = useSelector(selectCountdown)
     const dispatch = useDispatch()
@@ -17,6 +17,7 @@ const Countdown = ({x, y}) => {
         if(countdown.isCountingDown){
             cdIntervalId = setInterval(() => {
                 dispatch(tickCountdown())
+                clearLine()
             }, 1000)
         }
 
