@@ -8,8 +8,8 @@ import useWindowDimensions from '../../utils/useWindowDimensions';
 const LoadedDataVisual = ({ chartHeight, chartWidth }) => {
     const loadedData = useSelector(selectTeacherData);
 
-    const minYaw = 0;
-    const maxYaw = 360;
+    const minYaw = -180;
+    const maxYaw = 180;
     const minRoll = -180;
     const maxRoll = 180;
 

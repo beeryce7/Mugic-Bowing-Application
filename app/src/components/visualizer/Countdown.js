@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { selectCountdown } from "../../slices/recordingDataSlice";
 import { tickCountdown } from "../../slices/recordingDataSlice";
 import { useDispatch } from "react-redux";
+import { calibrateDevice } from "../../slices/mugicDataSlice";
 
 
 const Countdown = ({x, y, clearLine}) => {
@@ -18,6 +19,7 @@ const Countdown = ({x, y, clearLine}) => {
             clearLine()
             cdIntervalId = setInterval(() => {
                 dispatch(tickCountdown())
+                dispatch(calibrateDevice())
             }, 1000)
         }
 
@@ -28,17 +30,6 @@ const Countdown = ({x, y, clearLine}) => {
 
     }, [countdown.isCountingDown])
 
-    const getCountdownText = () => {
-        if(countdown.isCountingDown){
-            if(countdown.timer == 0){
-                return "Start!"
-            }
-            else{
-                return countdown.timer
-            }
-        }
-        return ""
-    }
 
     if (!countdown.isCountingDown) {
         return (<></>)
