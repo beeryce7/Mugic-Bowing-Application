@@ -55,22 +55,6 @@ const Visualizer = ({isRecordPage = false}) => {
                         x={width / 2}
                         y={height / 2}
                     />
-                    <Circle
-                        ref={circleRef}
-                        x={width / 2}
-                        y={height / 2}
-                        radius={10}
-                        fill="blue"
-                    />
-                    <Line
-                        ref={lineRef}
-                        x={0}
-                        y={0}
-                        width={chartWidth}
-                        height={chartHeight}
-                        stroke="black"
-                        strokeWidth={2}
-                    />
                     {!isRecordPage && loadedData.length > 0 &&  (
                         // if there is loadedData and it is playSession we show the loaded visual
                         <LoadedDataVisual
