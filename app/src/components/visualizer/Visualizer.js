@@ -20,8 +20,8 @@ const Visualizer = ({isRecordPage = false}) => {
 
     const minYaw = -180;
     const maxYaw = 180;
-    const minRoll = -180;
-    const maxRoll = 180;
+    const minRoll = -90;
+    const maxRoll = 90;
     const yawOffset = 0;
     const rollOffset = 180;
     const lineLifetime = 10;
