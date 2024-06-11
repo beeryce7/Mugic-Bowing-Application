@@ -71,6 +71,7 @@ const Visualizer = ({isRecordPage = false}) => {
 
 
     return (
+        <div>
             <Stage width={chartWidth} height={chartHeight} >
 
                 <Layer>
