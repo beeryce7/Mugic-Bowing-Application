@@ -29,15 +29,12 @@ const SessionState = () => {
                 style: {
                   fontSize: 'var(--default-text-size)',
                   fontWeight: 'var(--main-font-weight)',
+                  fontFamily: 'var(--main-font)',
                 },
               }}
               InputProps={{
                 style: {
                   fontSize: 'var(--default-text-size)',
-                },
-                inputProps: {
-                  min: 0,
-                  max: 30,
                 },
               }}
               onChange={(e)=> {

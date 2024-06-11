@@ -49,10 +49,6 @@
 .offset
 {
     margin-right: 10%;
-    font-family: var(--main-font);
-    font-size: var(--card-text-size);
-    font-weight: var(--main-font-weight);
-    font-family: var(--main-font);
 }
 
 .lower-box{
