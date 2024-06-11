@@ -3,7 +3,6 @@ import './Settings.css';
 import Header from '../../components/home/Header';
 import { Grid, Container, Switch, Button } from '@mui/material';
 import InfoContainer from '../../components/settings/InfoContainer';
-import { selectMugicData } from '../../slices/mugicDataSlice';
 import MeasurementGauge from '../../components/settings/MeasurementGauge';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectMugicData, calibrateDevice } from '../../slices/mugicDataSlice';
