@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { Button, Grid, Snackbar } from '@mui/material';
 //import DividerStack from '../../components/PlaySession/DividerStack';
 import Visualizer from '../../components/visualizer/Visualizer';
+import LoadedDataVisual from '../../components/visualizer/LoadedDataVisual';
 import { selectRecordingTimer } from '../../slices/recordingDataSlice';
 
 
@@ -21,8 +22,10 @@ const PlaySession = () => {
         <div className="be-on-right">  {recordingTimer}</div>
 
         <div className="new-graph">
+            <LoadedDataVisual/> 
             <Visualizer/>
         </div>
+ 
 
         <SessionState/>
     </div> 
