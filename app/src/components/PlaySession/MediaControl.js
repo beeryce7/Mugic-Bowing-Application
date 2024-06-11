@@ -6,19 +6,24 @@ import StopOutlinedIcon from '@mui/icons-material/StopOutlined';
 import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined';
 import ReplayIcon from '@mui/icons-material/Replay';
 import SaveIcon from '@mui/icons-material/Save';
-import { Box, Typography } from '@mui/material';
-
-import { selectIsRecording, selectRecordingStartTime, startCountdown, stopRecording, selectCountdown} from '../../slices/recordingDataSlice'
+import { Box, Typography, Snackbar } from '@mui/material';
+import { buildTeacherFile, buildTeacherStudentFile } from '../../utils/format';
+import { loadRecording, selectLoadedType, selectTeacherData} from '../../slices/loadedDataSlice';
+import { selectIsRecording, selectRecordingStartTime, startCountdown, stopRecording, selectCountdown, selectRecordingData, clearRecording, } from '../../slices/recordingDataSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
 const MediaControl = () => {
 
     const dispatch = useDispatch()
     const isRecording = useSelector(selectIsRecording)
+    const recordingData = useSelector(selectRecordingData)
     const recordingStartTime = useSelector(selectRecordingStartTime)
     const countdown = useSelector(selectCountdown)
+    const loadedType = useSelector(selectLoadedType)
+    const teacherData = useSelector(selectTeacherData)
 
     const [secondsElapsed, setSecondsElapsed] = useState(0)
+    const [loadSnackbarOpen, setLoadSnackbarOpen] = React.useState(false)
 
     var interval = 0
 
@@ -27,7 +32,7 @@ const MediaControl = () => {
     }
 
     const handleRedo= () => {
-        console.log("redo")
+        dispatch(clearRecording())
     };
 
     const handleStop = () => {
@@ -39,7 +44,26 @@ const MediaControl = () => {
     };
 
     const handleSave = () => {
-        console.log("save");
+        let fileString = ""
+    
+        console.log("saving file")
+        
+        if(loadedType == "None"){
+          fileString = buildTeacherFile(recordingData, recordingStartTime);
+        }
+        else{ // student data contained in recording slice
+          fileString = buildTeacherStudentFile(teacherData, recordingData, recordingStartTime)
+        }
+        window.electronAPI.saveFile(fileString)
+      }
+    
+    const handleLoad = async () => {
+        const {fileName, message, cancelled} = await window.electronAPI.loadFile();
+        if(!cancelled){
+            dispatch(loadRecording(fileName, message))
+            setLoadSnackbarOpen(true)
+        }
+
     }
 
     const iconStyles = {
@@ -99,6 +123,13 @@ const MediaControl = () => {
                     SAVE
                 </Typography>
             </Box>
+
+            <Snackbar
+                open={loadSnackbarOpen}
+                message="File Loaded!"
+                autoHideDuration={2000}
+                onClose={()=>setLoadSnackbarOpen(false)}
+            />
         </>
     );
 }
