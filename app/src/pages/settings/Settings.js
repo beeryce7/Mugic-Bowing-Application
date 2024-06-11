@@ -64,7 +64,7 @@ const Settings = () => {
               Calibrate
             </Button>
          </InfoContainer>
-
+         </Grid>
       </Grid>
     </div> 
   );
