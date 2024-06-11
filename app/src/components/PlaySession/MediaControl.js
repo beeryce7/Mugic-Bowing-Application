@@ -8,7 +8,7 @@ import ReplayIcon from '@mui/icons-material/Replay';
 import SaveIcon from '@mui/icons-material/Save';
 import { Box, Typography, Snackbar } from '@mui/material';
 import { buildTeacherFile, buildTeacherStudentFile } from '../../utils/format';
-import { loadRecording, selectLoadedType, selectTeacherData} from '../../slices/loadedDataSlice';
+import { selectLoadedType, selectTeacherData} from '../../slices/loadedDataSlice';
 import { selectIsRecording, selectRecordingStartTime, startCountdown, stopRecording, selectCountdown, selectRecordingData, clearRecording, } from '../../slices/recordingDataSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -56,15 +56,6 @@ const MediaControl = () => {
         }
         window.electronAPI.saveFile(fileString)
       }
-    
-    const handleLoad = async () => {
-        const {fileName, message, cancelled} = await window.electronAPI.loadFile();
-        if(!cancelled){
-            dispatch(loadRecording(fileName, message))
-            setLoadSnackbarOpen(true)
-        }
-
-    }
 
     const iconStyles = {
         width: { xs: '50px', sm: '80px', md: '100px' },
@@ -123,13 +114,6 @@ const MediaControl = () => {
                     SAVE
                 </Typography>
             </Box>
-
-            <Snackbar
-                open={loadSnackbarOpen}
-                message="File Loaded!"
-                autoHideDuration={2000}
-                onClose={()=>setLoadSnackbarOpen(false)}
-            />
         </>
     );
 }
