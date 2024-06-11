@@ -18,7 +18,7 @@ const Header = () => {
       </div>
 
       <div className="nav-items">
-        <div className="nav-item">
+        <div className="no-point">
           Battery: {battery}
         </div>
         <div className="nav-item"><Link to="/settings">Settings</Link></div>

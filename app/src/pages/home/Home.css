@@ -16,6 +16,44 @@
     margin-bottom: 0px;
 }
 
+.text_style_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .stay-on-right {
+    margin: 0;
+    padding-right: 20px;
+    font-family:  var(--main-font);
+    font-weight: var(--main-font-weight);
+    font-size: var(--default-text-size);
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+
+  .circle-green {
+    background-color: yellow; 
+    width: 40px;
+    height: 40px; 
+    border-radius: 50%;        /* This makes it a circle */
+    display: inline-block;
+    margin-right: 10px;
+    
+  }
+
+  .circle-red {
+    background-color: red; 
+    width: 40px;
+    height: 40px; 
+    border-radius: 50%;        /* This makes it a circle */
+    display: inline-block;
+    margin-right: 10px;
+    
+  }
+  
+
 .banner{
     display: flex;
     justify-content: center; 

@@ -32,29 +32,4 @@ const PlaySession = () => {
   );
 };
 
-// Countdown function
-/*function countdown() {
-  // Get the countdown element
-  const countdownElement = document.getElementById('countdown');
-
-  // Set the initial countdown value
-  let count = 3;
-
-  // Update the countdown every second
-  const timer = setInterval(function() {
-      // Display the current countdown value
-      countdownElement.innerText = count;
-
-      // Decrement the count
-      count--;
-
-      // If the count reaches 0, stop the countdown
-      if (count < 0) {
-          clearInterval(timer);
-          countdownElement.innerText = 'Countdown Complete!';
-      }
-  }, 1000);
-}*/
-
-
 export default PlaySession;
