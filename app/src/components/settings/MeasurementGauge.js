@@ -7,8 +7,9 @@ const MeasurementGauge = ({value}) => {
         <GaugeComponent
             //value={value != null ? value : 0}
             type="radial"
-            value={3}
-            style={{height:10}}
+            value={0}
+            style={{width:10}}
+            
         />
     )
 }

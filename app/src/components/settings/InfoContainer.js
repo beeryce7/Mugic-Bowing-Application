@@ -6,7 +6,7 @@ import { Container } from '@mui/material';
 const InfoContainer = ({title, children, fill}) => {
     return (
     <Container className="outer">
-        <h2>{title}</h2>
+        <div className="text-style">{title}</div>
         <Container className={fill ? "body-fill" : "body-nofill"}>
             {children}
         </Container>

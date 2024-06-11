@@ -27,9 +27,6 @@ const Settings = () => {
          </InfoContainer>
         </Grid>
         <Grid item xs={6}>
-         <InfoContainer title="Energy">
-
-         </InfoContainer>
         </Grid>
         <Grid item xs={6}>
          <InfoContainer title="Pitch">
@@ -37,9 +34,6 @@ const Settings = () => {
          </InfoContainer>
         </Grid>
         <Grid item xs={6}>
-         <InfoContainer title="Jolt">
-         <Switch />
-         </InfoContainer>
         </Grid>
         <Grid item xs={6}>
          <InfoContainer title="Roll">
