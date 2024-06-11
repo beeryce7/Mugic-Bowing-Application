@@ -22,6 +22,7 @@ const Settings = () => {
          <InfoContainer title="Yaw">
           <MeasurementGauge
             value={mugicData.yaw}
+            measurement={'yaw'}
           />
           
          </InfoContainer>
@@ -30,14 +31,21 @@ const Settings = () => {
         </Grid>
         <Grid item xs={6}>
          <InfoContainer title="Pitch">
-          {mugicData.pitch}
+          <MeasurementGauge
+            value = {mugicData.pitch}
+            measurement={'pitch'}
+          />
+          
          </InfoContainer>
         </Grid>
         <Grid item xs={6}>
         </Grid>
         <Grid item xs={6}>
          <InfoContainer title="Roll">
-         {mugicData.roll}
+         <MeasurementGauge
+            value = {mugicData.roll}
+            measurement={'roll'}
+          />
          </InfoContainer>
         </Grid>
         <Grid item xs={6}>
