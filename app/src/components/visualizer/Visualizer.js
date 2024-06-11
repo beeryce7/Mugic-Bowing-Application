@@ -15,8 +15,8 @@ import { selectRecordingData, selectIsRecording, selectCountdown } from "../../s
 const Visualizer = ({isRecordPage = false}) => {
     const { height, width } = useWindowDimensions();
 
-    const chartHeight = height * 0.7;
-    const chartWidth = width ;
+    const chartHeight = height * 0.6;
+    const chartWidth = width;
 
     const minYaw = -180;
     const maxYaw = 180;
@@ -72,7 +72,7 @@ const Visualizer = ({isRecordPage = false}) => {
 
     return (
         <div>
-            <Stage width={chartWidth} height={chartHeight}>
+            <Stage width={chartWidth} height={chartHeight} >
 
                 <Layer>
                     <Countdown
