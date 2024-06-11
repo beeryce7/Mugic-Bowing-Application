@@ -9,9 +9,10 @@ import { selectTeacherData } from "../../slices/loadedDataSlice";
 import useWindowDimensions from "../../utils/useWindowDimensions";
 import LoadedDataVisual from "./LoadedDataVisual";
 import Countdown from "./Countdown";
+import { selectRecordingData } from "../../slices/recordingDataSlice";
 
 
-const Visualizer = ({isRecordPage = false}) => {
+const Visualizer = ({isRecordPage = false, clearLineData}) => {
     const { height, width } = useWindowDimensions();
 
     const chartHeight = height * 0.7;
@@ -31,6 +32,7 @@ const Visualizer = ({isRecordPage = false}) => {
     //this is an array of [[yaw1,pitch1,roll1], [yaw2,pitch2,roll2] ... ] that was loaded from file
     //use to play back teacher data
     const loadedData = useSelector(selectTeacherData);
+    const recordingData = useSelector(selectRecordingData)
 
     // Points in lineData will be in the format [x1, y1, x2, y2, x3, y3]
     const[lineData, setLineData] = useState([]);
@@ -44,9 +46,13 @@ const Visualizer = ({isRecordPage = false}) => {
         };
         // setLineData is simular to accumulate, reused Aaron's variable
         setLineData((prevData) => [...prevData, newPoint.x, newPoint.y]);
+        
 
         //console.log(chartHeight, chartWidth, mugicData.yaw)
     }, [mugicData])
+
+    
+
 
     return (
         <div>
