@@ -8,17 +8,38 @@ import { Button, Grid, Snackbar } from '@mui/material';
 import Visualizer from '../../components/visualizer/Visualizer';
 import LoadedDataVisual from '../../components/visualizer/LoadedDataVisual';
 import { selectRecordingTimer } from '../../slices/recordingDataSlice';
-
+import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
 const PlaySession = () => {
 
   const recordingTimer = useSelector(selectRecordingTimer)
 
+  const handleImportFile = () => {
+    console.log("Import");
+  }
+
   return (
     <div>
         <Header/>
-        <div className="top-graph"><div className="key"><div class="color-block-teacher"></div><div className="change-font">Teacher</div></div></div>
-        <div className="top-graph"><div className="key"><div class="color-block-student"></div><div className="change-font">Student</div></div></div>
+        <div className="top-graph">
+          <Button 
+            onClick={handleImportFile} 
+            size="large"
+            variant="contained"
+            style={{
+              backgroundColor:  'var(--main-background-color)',
+              fontSize: 'var(--default-text-size)',
+              fontFamily: 'var(--main-font)',
+            }}
+          >
+            <FileDownloadOutlinedIcon
+              style={{
+                fontSize: 'var(--default-text-size)',
+              }}
+            />
+            Import File
+          </Button>
+        </div>
         <div className="be-on-right">  {recordingTimer}</div>
 
         <div className="new-graph">
@@ -26,7 +47,8 @@ const PlaySession = () => {
             <Visualizer/>
         </div>
  
-
+        <div className="top-graph"><div className="key"><div class="color-block-teacher"></div><div className="change-font">Teacher</div></div></div>
+        <div className="top-graph"><div className="key"><div class="color-block-student"></div><div className="change-font">Student</div></div></div>
         <SessionState/>
     </div> 
   );

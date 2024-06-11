@@ -1,5 +1,5 @@
 .top-graph {
-    margin: 0 100px;
+    margin: 0 50px;
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
@@ -41,5 +41,5 @@
     margin-top: 16px;
     justify-content: center;
     align-items: center; 
-    font-size: var(--default-text-size)
+    font-size: var(--default-text-size);
 }
