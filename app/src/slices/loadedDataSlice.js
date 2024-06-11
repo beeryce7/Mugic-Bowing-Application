@@ -43,7 +43,14 @@ const loadedDataSlice = createSlice({
                     }
                 }
 
-                else { //case: teacher and student data
+                else {
+                    for(let i = 3; i < totalDataPoints+3; ++i){
+                        const [teacherPoint, studentPoint] = lines[i].split(";")
+                        teacherData.push(teacherPoint.split(','))
+                        if(studentPoint !== ""){
+                            studentData.push(studentPoint.split(','))
+                        }
+                    }
 
                 }
                 const payload = {

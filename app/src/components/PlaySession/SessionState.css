@@ -34,12 +34,6 @@
 
 .new-graph {
     display: flex;
-    margin:  100px;
-    font-size: 100px;
-    justify-content: center;
-    align-items: center; 
-    font-weight: var(--main-font-weight);
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 
@@ -52,24 +46,9 @@
     font-weight: var(--main-font-weight);
 }
 
-.offset-left
+.offset
 {
-    margin-right: 20px;
-    font-family: 'Josefin Sans', sans-serif;
-    justify-content: center;
-    align-items: center;
-    font-size: var(--card-text-size);
-    font-weight: var(--main-font-weight);
-    font-family: var(--main-font);
-}
-
-
-.offset-right
-{
-    margin-left: 20px;
-    font-size: var(--default-text-size);
-    font-weight: var(--main-font-weight);
-    font-family: var(--main-font);
+    margin-right: 10%;
 }
 
 .lower-box{

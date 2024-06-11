@@ -1,15 +1,23 @@
 import React, {useEffect} from 'react';
 import './Settings.css'; 
 import Header from '../../components/home/Header';
-import { Grid, Container, Switch } from '@mui/material';
+import { Grid, Container, Switch, Button } from '@mui/material';
 import InfoContainer from '../../components/settings/InfoContainer';
-import { useSelector } from 'react-redux';
 import { selectMugicData } from '../../slices/mugicDataSlice';
 import MeasurementGauge from '../../components/settings/MeasurementGauge';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectMugicData, calibrateDevice } from '../../slices/mugicDataSlice';
+
 
 const Settings = () => {
 
   const mugicData = useSelector(selectMugicData);
+
+  const dispatch = useDispatch();
+
+  const handleCalibration = () => {
+    dispatch(calibrateDevice());
+  };
 
   return (
     <div>
@@ -40,6 +48,7 @@ const Settings = () => {
          </InfoContainer>
         </Grid>
 
+
         
         <Grid item xs={6}>
         
@@ -50,11 +59,11 @@ const Settings = () => {
             <li> <b>Pitch</b> is the rotation from up to down.</li>
             <li> <b>Roll</b> is the rotation of the whole device as if you are doing a barrel roll on a plane! </li>
           </InfoContainer>
- 
-        </Grid>
-        
-        
-        
+          <InfoContainer title="Calibration" fill={false}>
+            <Button variant="contained" onClick={handleCalibration}>
+              Calibrate
+            </Button>
+         </InfoContainer>
 
       </Grid>
     </div> 
