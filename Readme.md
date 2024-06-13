@@ -1,5 +1,7 @@
 # UCI INF 117 Spring 24 [mugic_bow_app]
 
+The music device utilizes a gyroscope to track a user's movements. The accompanying desktop application enables teachers to record their own movements, allowing students to compare their bow technique to that of the instructor for improvement.
+
 ## notes and comments
 Current version of the mugic device is wireless (not bluetooth)  
 Have to manually connect to the network by switching to the Wireless hotspot MUGICXXXXXXX
