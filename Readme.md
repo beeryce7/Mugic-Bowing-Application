@@ -2,13 +2,15 @@
 
 ## notes and comments
 Current version of the mugic device is wireless (not bluetooth)
-Have to manually connect to the network by switching to the Wireless hotspot MUGICXXXXXXX
+\Have to manually connect to the network by switching to the Wireless hotspot MUGICXXXXXXX
 
-The listed files still needs to be improved upon.
+The listed files still needs to be improved upon
+```
 Visualizer.js
 LoadedDataVisual.js
+```
 
-A lot of the tools have been build and streamlined in Redux. 
+\A lot of the tools have been build and streamlined in Redux. 
 
 ## Tools/library
 ```
