@@ -1,8 +1,8 @@
 # UCI INF 117 Spring 24 [mugic_bow_app]
 
 ## notes and comments
-Current version of the mugic device is wireless (not bluetooth)
-\Have to manually connect to the network by switching to the Wireless hotspot MUGICXXXXXXX
+Current version of the mugic device is wireless (not bluetooth)  
+Have to manually connect to the network by switching to the Wireless hotspot MUGICXXXXXXX
 
 The listed files still needs to be improved upon
 ```
@@ -10,7 +10,7 @@ Visualizer.js
 LoadedDataVisual.js
 ```
 
-\A lot of the tools have been build and streamlined in Redux. 
+A lot of the tools have been build and streamlined in Redux. 
 
 ## Tools/library
 ```
@@ -41,5 +41,5 @@ npm start
 
 ## Run the following commands and you will build executables in your root directory of each specific platform with an icon
 - first build current app `npm run build --prefix ./app`
-- for mac run `npx electron-packager ./ --platform=darwin --icon=./app/src/assets/images/mugic_logo.icns`
+- for mac run `npx electron-packager ./ --platform=darwin --icon=./app/src/assets/images/mugic_256x256.icns`
 - for windows run `npx electron-packager ./ --platform=win32 --arch=x64 --icon=./app/src/assets/images/mugic_logo.ico`
